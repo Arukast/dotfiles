@@ -77,7 +77,7 @@
 	},
 	"custom/power": {
 		"format": "󰐥",
-		"on-click": "${HOME}/.config/rofi/powermenu/type-6/powermenu.sh"
+		"on-click": "${HOME}/.config/rofi/powermenu/type-1/powermenu.sh"
 	},
 	"clock": {
 		"format": "{:%A %d %B %Y %H:%M:%S}",
