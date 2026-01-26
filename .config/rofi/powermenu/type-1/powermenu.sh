@@ -11,11 +11,11 @@
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu/type-1"
-theme='style-1'
+theme='style-5'
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+host=`whoami`
 
 # Options
 shutdown=' Shutdown'
