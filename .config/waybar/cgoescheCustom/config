@@ -1,0 +1,195 @@
+{
+    "position": "top", 
+    "height": 37,
+    "modules-left": [
+		"custom/logo",
+		"cpu",
+		"memory", 
+		"mpris"
+		// "cava" // Not Supported yet
+		// "custom/notif", 
+		],
+    "modules-center": [
+		"hyprland/workspaces",
+		"hyprland/submap"
+	],
+    "modules-right": [
+		"network",
+		"pulseaudio", 
+		"clock", 
+		// "custom/keyboardbacklight", 
+		"custom/unsync",
+		"systemd-failed-units",
+		"battery",
+		"tray", 
+		"custom/power"
+	],
+    	// Modules configuration
+	"hyprland/submap": {
+        "format": " {}"
+    },
+	"hyprland/workspaces": {
+        "format": "{name}",
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "smooth-scrolling-threshold": 30
+    },
+	"custom/logo": {
+		"format": "󰣇",
+		"on-click": "${HOME}/.config/rofi/launchers/type-4/launcher.sh",
+		"tooltip": "true",
+		"tooltip-format": "Arch aarch64"
+	},
+	"custom/date": {
+    		"format": "󰸗 {}",
+		"interval": 3600,
+		"exec": "${HOME}/.config/waybar/modules/waybar-date.sh"
+	},
+	"custom/power": {
+		"format": "󰐥",
+		"on-click": "${HOME}/.config/rofi/powermenu/type-6/powermenu.sh"
+	},
+	// "custom/keyboardbacklight": {
+	// 	"format": " ",
+	// 	"on-click": "genesis --auto",
+	// 	"on-scroll-up": "genesis -b +1%",
+	// 	"on-scroll-down": "genesis -b -1%",
+	// 	"scroll-step": "2.0",
+	// 	"smooth-scrolling-threshold": "2.0",
+	// 	"restart-interval": "1",
+	// 	"tooltip": "true",
+	// 	"tooltip-format": "Keyboard backlight"
+	// },
+	"clock": {
+		"format": "{:%a %d %b %H:%M}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "{:%Y-%m-%d}"
+	},
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15,
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
+		"format-plugged": "󰂄{capacity}%",
+		"format-alt": "{time} {icon}",
+		"format-full": "󱈑 {capacity}%",
+		"format-icons": ["󱊡", "󱊢", "󱊣"]
+	},
+	"network": {
+		"format-wifi": "{essid}",
+		"format-ethernet": "ETH-IP: {ipaddr}",
+		"format-linked": "{ifname} (No IP)",
+		"format-disconnected": "󰤮 Disconnected",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁 Muted",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["","","", "", ""]
+		}
+	},
+	"tray": {
+		"icon-size": 13,
+		"spacing": 5,
+	}, 
+	"disk": {
+		"interval": 30,
+		"format": "/ {percentage_free}% FREE",
+		"path": "/"
+	}, 
+	"memory": {
+		"interval": 30,
+		"format": "RAM {used:0.1f}G/{total:0.1f}G "
+   	},
+	"cpu": {
+		"interval": 10,
+		"format": "CPU {}% ",
+		"max-length": 20
+	},
+	// "backlight": {
+	// 	"format": "{percent}% {icon}",
+	// 	"format-icons": ["", ""],
+	// 	"device": "apple-panel-bl",
+	// 	"on-click": "backlightctl --auto",
+	// 	"on-scroll-up": "backlightctl --set +5%",
+	// 	"on-scroll-down": "backlightctl --set -10%",
+	// 	"scroll-step": "5.0",
+	// 	"smooth-scrolling-threshold": "2.0"
+	// },
+	"mpris": {
+		"interval": 0,
+		"format": "<span color=\"#a6da95\">{player_icon} </span> <span color=\"#a6da95\">{status_icon}</span> {title}",
+		"format-paused": "<span color=\"#a6da95\">{player_icon} </span> <span color=\"#a6da95\">{status_icon}</span> {title}",
+		"on-click": "playerctl play-pause",
+		"player-icons": {
+			"chromium": " ",
+			"default": " ",
+			"firefox": " ",
+			"kdeconnect": " ",
+			"mopidy": " ",
+			"mpv": " ",
+			"spotify": " ",
+			"ncspot": " ",
+			"vlc": "󰕼 ",
+		},
+		"status-icons": {
+			"playing": " ",
+			"paused": " ",
+			"stopped": " ",
+		},
+		"title-len" : 30,
+	},
+	"systemd-failed-units": {
+		"hide-on-ok": false,
+		"format": "✗ {nr_failed}",
+		"format-alt": "{nr_failed} failed systemd unit(s)",
+		"format-ok": "✓",
+		"system": true, 		
+		"user": true,
+	},
+	// "cava": {
+	// 	//"cava_config": "/home/cgoesche/.config/cava/config",
+	// 	"method": "pulse",
+	// 	"framerate": 30,
+	// 	"autosens": 1,
+	// 	"sensitivity": 100,
+	// 	"bars": 14,
+	// 	"lower_cutoff_freq": 50,
+	// 	"higher_cutoff_freq": 100,
+	// 	"method": "alsa",
+	// 	"source": "auto",
+	// 	"stereo": true,
+	// 	"reverse": false,
+	// 	"bar_delimiter": 0,
+	// 	"monstercat": false,
+	// 	"waves": true,
+	// 	"noise_reduction": 0.77,
+	// 	"input_delay": 2,
+	// 	"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+	// 	"actions": {
+	// 		"on-click-right": "mode"
+	// 	}
+	// },
+	// "custom/notif": {
+    //     "interval": 1,
+    //     "return-type": "json",
+    //     "exec": "~/.config/waybar/modules/notif.sh",
+    //     "exec-if": "ls ~/.config/dots | grep notification"
+    // },
+	"custom/unsync": {
+        "format": "{} ",
+        "return-type": "json",
+        "interval": 20,
+        "exec": "~/.config/waybar/modules/unsync.sh",
+        "exec-if": "~/.config/waybar/modules/unsync.sh"
+    },
+}

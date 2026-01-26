@@ -1,0 +1,150 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["hyprland/workspaces", "hyprland/submap", "custom/notif", "custom/cmus", "custom/spotify"],
+    "modules-center": ["custom/time"],
+    "modules-right": ["cpu", "memory", "custom/unsync", "custom/storage", "custom/snapcount", "pulseaudio", "battery", "clock", "tray"],
+    "hyprland/submap": {
+        "format": " {}"
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "smooth-scrolling-threshold": 30
+    },
+    "hyprland/window": {
+        "max-length": 80,
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%d.%m.%y %a / W: %V}",
+        "tooltip": false
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": "{capacity}% ",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+    "network": {
+        "format": "{icon}",
+        "format-alt": "{ipaddr}/{cidr} {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": {
+            "wifi": ["", "" ,""],
+            "ethernet": [""],
+            "disconnected": [""]
+        },
+        "on-click": "kitty -e nmtui",
+    "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "{volume} {icon}",
+        "format-alt": "{volume} {icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "phone": [" ", " ", " ", " "],
+            "default": ["", "", "", ""]
+        },
+        "scroll-step": 10,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "custom/notif": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/notif.sh",
+        "exec-if": "ls ~/.config/dots | grep notification"
+    },
+    "custom/cmus": {
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/cmus.sh",
+        "exec-if": "cmus-remote -Q 2>/dev/null | grep 'status playing'",
+        "escape": true
+    },
+    "custom/spotify": {
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+    "custom/unsync": {
+        "format": "{} ",
+        "return-type": "json",
+        "interval": 20,
+        "exec": "~/.config/waybar/modules/unsync.sh",
+        "exec-if": "~/.config/waybar/modules/unsync.sh"
+    },
+    "custom/storage": {
+        "format": "{} ",
+        "format-alt": "{percentage}% ",
+        "format-alt-click": "click-right",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/modules/storage.sh"
+    },
+    "custom/snapcount": {
+        "format": "{} ",
+        "return-type": "json",
+        "interval": 400,
+        "exec": "~/.config/waybar/modules/snapcount.sh",
+        "exec-if": "ls /usr/bin | grep zpool"
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-alt": "{percent}% {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": ["", ""],
+        "on-scroll-down": "light -A 1",
+        "on-scroll-up": "light -U 1"
+    },
+    "custom/time": {
+        "format": "{}",
+        "interval": 5,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/time.sh"
+    },
+    // "custom/weather": {
+    //     "format": "{}",
+    //     "format-alt": "{alt}: {}",
+    //     "format-alt-click": "click-right",
+    //     "interval": 220,
+    //     "return-type": "json",
+    //     "exec": "~/.config/waybar/modules/weather.sh hamburg"
+    // },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": false
+    },
+    "custom/test": {
+        "format": "{}",
+        "exec": "/tmp/test blub",
+        "param": "blah",
+        "interval": 5
+    },
+    "tray": {
+        "icon-size": 18
+    },
+    "cpu": {
+        "tooltip": false,
+        "format": "{}% "
+    },
+    "memory": {
+        "tooltip": false,
+        "format": "{}% "
+    }
+}
