@@ -4,14 +4,14 @@
     "modules-left": [
 		"custom/logo",
 		"user",
-		"custom/unsync",
 		"hyprland/workspaces",
 		"hyprland/submap",
-		"systemd-failed-units",
 		"battery",
 		"temperature",
 		"cpu",
 		"memory",
+		"custom/unsync",
+		"systemd-failed-units",
 		"gamemode",
 		"privacy"
 		// "disk",
