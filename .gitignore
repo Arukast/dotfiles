@@ -1,0 +1,43 @@
+# --- Classified ---
+.ssh/
+.gnupg/
+.env
+*.pem
+*.key
+
+# --- Trash & Log System ---
+.cache/
+.local/
+.npm/
+.yarn/
+*.log
+*.tmp
+*.bak
+.DS_Store
+
+# --- Personal Directory ---
+Downloads/
+Documents/
+Pictures/
+Music/
+Videos/
+Desktop/
+Public/
+Templates/
+
+# --- .config ---
+
+# --- Misc ---
+.vscode/
+.vscode-oss/
+.idea/
+node_modules/
+venv/
+.mozilla/
+.nv/
+.pki/
+.var/
+.dotfiles/
+.nvidia-settings-rc
+.bash_history
+.bash_history*
