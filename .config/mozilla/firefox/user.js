@@ -258,11 +258,11 @@ user_pref("dom.security.https_only_mode", true);
 user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 
 // PREF: set DoH provider
-// user_pref("network.trr.uri", "https://security.cloudflare-dns.com/dns-query");
+// user_pref("network.trr.uri", "https://cloudflare-dns.com/dns-query");
 
-// PREF: enforce DNS-over-HTTPS (DoH)
-user_pref("network.trr.mode", 2);
-user_pref("network.trr.max-fails", 5);
+// PREF: enforce DNS-over-HTTPS (DoH) 2: inreased protection, 3: max protection
+// user_pref("network.trr.mode", 2);
+// user_pref("network.trr.max-fails", 5);
 
 // PREF: ask where to save every file
 user_pref("browser.download.useDownloadDir", false);
