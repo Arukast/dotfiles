@@ -41,3 +41,4 @@ venv/
 .nvidia-settings-rc
 .bash_history
 .bash_history*
+.gitconfig
