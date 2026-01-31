@@ -42,3 +42,5 @@ venv/
 .bash_history
 .bash_history*
 .gitconfig
+.config/fish/fish_history
+.config/fish/fish_variables
