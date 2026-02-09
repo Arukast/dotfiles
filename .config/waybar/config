@@ -12,7 +12,7 @@
 		"memory",
 		"custom/unsync",
 		"systemd-failed-units",
-		"gamemode",
+		// "gamemode",
 		"privacy"
 		// "disk",
 		],
@@ -25,7 +25,9 @@
 		"network",
 		"bluetooth",
 		"backlight",
+		"custom/hyprsunset",
 		"pulseaudio", 
+		"custom/hyprpicker",
 		"tray", 
 		"custom/notification",
 		"custom/power"
@@ -111,11 +113,16 @@
 			"critical": 15,
 		},
 		"format": "{icon} {capacity}%",
+		// "format": "{icon} {capacity}% ({power}W)",
 		"format-charging": "󰂄 {capacity}%",
+		// "format-charging": "󰂄 {capacity}% ({power}W)",
 		"format-plugged": "󰂄 {capacity}%",
-		"format-alt": "{time} {icon}",
+		// "format-alt": "{time} {icon}",
+		"format-alt": "{time} | {power}W",
 		"format-full": "󱈑 {capacity}%",
-		"format-icons": ["󱊡", "󱊢", "󱊣"]
+		"format-icons": ["󱊡", "󱊢", "󱊣"],
+		"tooltip": true,
+    	"tooltip-format": "{timeTo} - {power}W"
 	},
 	"network": {
 		"format": "{icon}",
@@ -132,7 +139,7 @@
 		"format-linked": "<span color=\"#a6e3a1\">󰖩 {ifname}</span>",
 		"format-wifi": "{icon} {essid}",
 		"interval": 30,
-		"on-click": "kitty -e nmtui",
+		"on-click": "nm-connection-editor",
 		"on-click-right": "rfkill toggle wifi",
 		"tooltip": true,
 		"tooltip-format": "interface:\t{ifname}\n\nconnected to {essid} at {signalStrength}% strength",
@@ -339,5 +346,23 @@
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
 	"escape": true
+},
+"custom/hyprsunset": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/hypr/scripts/hyprsunset_control.sh",      // Membaca status
+    "on-click": "~/.config/hypr/scripts/hyprsunset_control.sh toggle", // Aksi klik
+    "interval": "once",
+    "signal": 8,
+    "tooltip": true
+},
+"custom/hyprpicker": {
+    "format": "",
+    "on-click": "hyprpicker -a -f hex",
+    "on-click-right": "hyprpicker -a -f rgb",
+    "tooltip": true,
+    "tooltip-format": "Klik kiri: HEX | Klik kanan: RGB"
 }
 }
+
+

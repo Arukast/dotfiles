@@ -140,6 +140,12 @@ window#waybar {
   border-radius: 2px 2px 2px 2px;
 }
 
+#battery.critical:not(.charging) {
+  background-color: #ff0000;
+  color: #24283b;
+  border-radius: 2px 2px 2px 2px;
+}
+
 #pulseaudio {
   color: #e0af68;
   margin: 5px 0;
@@ -289,4 +295,22 @@ window#waybar {
   animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+#custom-hyprpicker {
+  color: #94e068;
+  margin: 5px 0;
+  padding: 0 10px;
+  background-color: #1d202e;
+  border-radius: 2px 2px 2px 2px;
+  margin-right: 3px;
+}
+
+#custom-hyprsunset {
+  color: #3b6d1f;
+  margin: 5px 0;
+  padding: 0 10px;
+  background-color: #1d202e;
+  border-radius: 2px 2px 2px 2px;
+  margin-right: 3px;
 }
