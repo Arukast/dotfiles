@@ -133,7 +133,8 @@ ForegroundPositive=#00e479
 ForegroundVisited=#ebb2ff
 
 [General]
-ColorScheme=MaterialYouDark
+ColorScheme=BreezeDark
+Name=Breze Dark
 ColorSchemeHash=3c0cecefbea43cdb8fe3da156e4a106f7384a526
 LastUsedCustomAccentColor=184,117,220
 XftHintStyle=hintslight
@@ -149,7 +150,7 @@ toolBarFont=Google Sans Flex,10,-1,5,500,0,0,0,0,0,0,0,0,0,0,1,Medium
 Theme=breeze-dark
 
 [KDE]
-widgetStyle=Darkly
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
