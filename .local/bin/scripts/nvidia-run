@@ -19,5 +19,10 @@ export __VK_LAYER_NV_optimus=NVIDIA_only
 export PROTON_HIDE_NVIDIA_GPU=0
 export PROTON_ENABLE_NVAPI=1
 
-# --- BAGIAN 4: JALANKAN ---
+# --- BAGIAN 4: MangoHud via Env Var (Metode Paling Stabil) ---
+# Tidak akan bikin crash launcher karena tidak menyuntik binary,
+# cuma memberi sinyal "Kalau siap, tampilkan HUD".
+export MANGOHUD=1
+
+# --- BAGIAN 5: JALANKAN ---
 exec "$@"
