@@ -24,8 +24,11 @@ Videos/
 Desktop/
 Public/
 Templates/
+Backup/
 
 # --- .config ---
+.config/fish/fish_history
+.config/fish/fish_variables
 
 # --- Misc ---
 .vscode/
@@ -42,5 +45,9 @@ venv/
 .bash_history
 .bash_history*
 .gitconfig
-.config/fish/fish_history
-.config/fish/fish_variables
+.pulse-cookie
+.steam
+.steampath
+.steampid
+.wget-hsts
+.Superposition
