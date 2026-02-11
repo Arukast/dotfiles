@@ -1,0 +1,33 @@
+{
+	"custom/hyprpicker": {
+		// "exec":
+		// "exec-if":
+		// "exec-on-event":
+		// "hide-empty-text":
+		// "return-type":
+		// "interval":
+		// "restart-interval":
+		// "signal":
+        "format": "",
+		// "format-icons":
+		// "rotate":
+		// "align":
+		// "justify":
+		"min-length": 2,
+		"max-length": 3,
+		"on-click": "hyprpicker -a -f hex",
+		// "on-click-middle":
+		"on-click-right": "hyprpicker -a -f rgb",
+		// "on-update":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		// "smooth-scrolling-threshold":
+        "tooltip": true,
+        "tooltip-format": "Klik kiri: HEX | Klik kanan: RGB"
+		// "escape":
+		// "menu":
+		// "menu-file":
+		// "menu-actions":
+		// "expand":
+	}
+}

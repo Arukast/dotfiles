@@ -1,0 +1,10 @@
+{
+    "systemd-failed-units": {
+		"hide-on-ok": true,
+		"format": "✗ {nr_failed}",
+		"format-alt": "{nr_failed} failed systemd unit(s)",
+		"format-ok": "✓",
+		"system": true, 		
+		"user": true,
+	}
+}

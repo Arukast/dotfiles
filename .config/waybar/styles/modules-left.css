@@ -1,0 +1,42 @@
+/*-----------------
+    distro icon
+-----------------*/
+
+#custom-distro {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+    padding: 0px 32px 0px 28px;
+}
+
+/*----------
+    time
+----------*/
+
+box#time {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+}
+
+
+box#systemInfo {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+}
+
+#systemd-failed-units.degraded {
+  color: #ff0000;
+  /* animation-name: blink; */
+  animation-duration: 1s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#privacy {
+  color: #ff0000;
+  /* animation-name: blink; */
+  animation-duration: 1s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

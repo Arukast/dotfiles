@@ -1,0 +1,32 @@
+/*-----------------
+    Control Center
+-----------------*/
+
+#custom-trigger {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+    padding: 0px 31px 0 29px;
+}
+
+/*-----------------
+	tray
+-----------------*/
+
+#tray {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+}
+
+box#utilities {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+    padding: 0px 12px 0 10px;
+}
+box#wheel {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+}
+box#connectivity {
+	background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+}

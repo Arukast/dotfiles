@@ -1,0 +1,40 @@
+/*-----------------
+    distro icon
+-----------------*/
+
+#custom-distro {
+	padding: 0 20px 0 20px;
+	background-color: @accent;
+	color: @main-bg;
+}
+#custom-right_div.5 {
+	color: @accent;
+}
+
+/*----------
+    time
+----------*/
+
+#custom-right_inv.2 {
+	color: @time;
+}
+#clock.time {
+	padding: 0px 3px 0px 7px;
+	background-color: @time;
+}
+#custom-right_div.6 {
+	background-color: @date;
+	color: @time;
+}
+
+/*----------
+    date
+----------*/
+
+#clock.date {
+	padding: 0px 3px 0px 7px;
+	background-color: @date;
+}
+#custom-right_div.7 {
+	color: @date;
+}

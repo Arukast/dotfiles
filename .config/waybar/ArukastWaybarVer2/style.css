@@ -1,0 +1,58 @@
+@import "theme.css";
+@import "styles/fonts.css";
+
+/* 1. SETUP WINDOW UTAMA */
+window#waybar {
+    background-color: transparent;
+    color: @main-fg;
+}
+
+/* 2. HAPUS SEMUA SELECTOR GLOBAL */
+/* Jangan gunakan * { ... }, button { ... }, atau label { ... } sendirian. */
+/* Gunakan selector yang diawali dengan #waybar atau .module */
+
+#waybar > box {
+    margin: 4px;
+    background-color: transparent;
+}
+
+/* 3. BUTTON HANYA DI DALAM BAR */
+/* Selector ini memastikan hanya tombol di bar yang kena style. */
+/* Menu tray (popup eksternal) tidak akan kena efek ini. */
+#waybar button {
+    border-radius: 16px;
+    min-width: 16px;
+    padding: 0 10px;
+    border: none; /* Reset border bawaan GTK */
+}
+
+/* Efek Hover hanya untuk tombol di bar */
+#waybar button:hover {
+    background-color: @hover-bg;
+    color: @hover-fg;
+}
+
+/* 4. KONFIGURASI MODUL */
+.module {
+    margin-bottom: -1px;
+}
+
+/* --- IMPORTS --- */
+@import "styles/modules-center.css";
+@import "styles/modules-left.css";
+@import "styles/modules-right.css";
+@import "styles/states.css";
+
+
+/* 5. TOOLTIP (Pengecualian) */
+/* Tooltip adalah window terpisah, jadi kita target langsung. */
+tooltip {
+    background-color: @main-bg;
+    border: 2px solid @main-br;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: @main-fg;
+    /* Font tooltip bisa diatur di sini jika perlu */
+}

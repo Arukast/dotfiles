@@ -1,0 +1,20 @@
+{
+    "include": [
+        "~/.config/waybar/modules/backlight.jsonc",
+		"~/.config/waybar/modules/pulseaudio.jsonc"
+    ],
+    "group/wheel": {
+		"orientation": "horizontal",
+		"modules": [
+			"pulseaudio#output",
+            "backlight",
+            "pulseaudio#input"
+		],
+		"drawer": {
+			// "transition-duration":
+			"transition-left-to-right": false
+			// "children-class":
+			// "click-to-reveal":
+		}
+	}
+}

@@ -1,0 +1,33 @@
+{
+	"custom/distro": {
+		// "exec":
+		// "exec-if":
+		// "exec-on-event":
+		// "hide-empty-text":
+		// "return-type":
+		// "interval":
+		// "restart-interval":
+		// "signal":
+		"format": "󰣇",
+		// "format-icons":
+		// "rotate":
+		// "min-length": 2,
+		// "max-length": 2,
+		// "align":
+		// "justify":
+		"on-click": "${HOME}/.config/rofi/launchers/type-1/launcher.sh",
+		// "on-click-middle": Dipake buat nampilin List Kebinds
+		"on-click-right": "${HOME}/.config/rofi/powermenu/type-1/powermenu.sh",
+		// "on-update":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		// "smooth-scrolling-threshold":
+		"tooltip": false,
+		// "tooltip-format":
+		"escape": true
+		// "menu":
+		// "menu-file":
+		// "menu-actions":
+		// "expand":
+	}
+}

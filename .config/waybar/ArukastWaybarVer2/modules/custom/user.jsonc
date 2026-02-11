@@ -1,0 +1,46 @@
+{
+	"group/user": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/trigger"
+		],
+		"drawer": {
+			// "transition-duration":
+			// "transition-left-to-right":
+			// "children-class":
+			// "click-to-reveal":
+		}
+	},
+
+	"custom/trigger": {
+		"exec": "swaync-client -swb",
+		"exec-if": "which swaync-client",
+		// "exec-on-event":
+		// "hide-empty-text":
+		"return-type": "json",
+		// "interval":
+		// "restart-interval":
+		// "signal":
+		"format": "󰍜",
+		// "format-icons":
+		// "rotate":
+		// "min-length": 4,
+		// "max-length": 4,
+		// "align":
+		// "justify":
+		"on-click": "swaync-client -t -sw",
+		// "on-click-middle":
+		"on-click-right": "swaync-client -d -sw",
+		// "on-update":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		// "smooth-scrolling-threshold":
+		// "tooltip":
+		"tooltip-format": "Control Center",
+		"escape": true,
+		// "menu":
+		// "menu-file":
+		// "menu-actions":
+		// "expand":
+	}
+}

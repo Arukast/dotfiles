@@ -1,0 +1,100 @@
+/*-----------------
+    temperature
+-----------------*/
+
+#custom-left_div.4 {
+	color: @temperature;
+	padding-left: 0.2px;
+}
+#temperature {
+	background-color: @temperature;
+}
+
+/*------------
+    memory
+------------*/
+
+#custom-left_div.3 {
+	background-color: @temperature;
+	color: @memory;
+	padding-left: 0.2px;
+}
+#memory {
+	background-color: @memory;
+}
+
+/*---------
+    cpu
+---------*/
+
+#custom-left_div.2 {
+	background-color: @memory;
+	color: @cpu;
+	padding-left: 0.2px;
+}
+#cpu {
+	background-color: @cpu;
+}
+#custom-left_inv.1 {
+	color: @cpu;
+}
+
+/*----------------
+    workspaces
+----------------*/
+
+#custom-left_div.1 {
+	color: @workspaces;
+	padding-left: 0.2px;
+}
+#custom-right_div.1 {
+	color: @workspaces;
+}
+#workspaces {
+	padding: 0 0px;
+	background-color: @workspaces;
+}
+#workspaces button.active label,
+#workspaces button.focused label {
+	color: @accent;
+}
+
+/*-------------
+    battery
+-------------*/
+
+#custom-right_inv.1 {
+	color: @battery;
+}
+#battery {
+	background-color: @battery;
+}
+#custom-right_div.2 {
+	background-color: @backlight;
+	color: @battery;
+}
+
+/*----------------
+    brightness
+----------------*/
+
+#custom-right_div.3 {
+	background-color: @volume;
+	color: @backlight;
+}
+#backlight {
+	background-color: @backlight;
+}
+
+/*------------
+    volume
+------------*/
+
+#custom-right_div.4 {
+	color: @volume;
+}
+#pulseaudio,
+#wireplumber {
+	background-color: @volume;
+}
+

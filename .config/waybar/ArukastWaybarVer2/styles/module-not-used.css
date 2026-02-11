@@ -1,0 +1,54 @@
+/*----------------
+    media info
+----------------*/
+
+/* #mpris {
+	padding: 0 12px;
+} */
+
+/*--------------------
+    idle inhibitor
+--------------------*/
+
+/* #custom-right_inv.1 {
+	color: @time;
+}
+#idle_inhibitor {
+	background-color: @time;
+} */
+
+/*----------------
+    power menu
+----------------*/
+
+/* #custom-power_menu {
+	border-radius: 16px;
+	padding: 0 19px 0 16px;
+	color: @accent;
+}
+#custom-power_menu:hover {
+	background-color: @hover-bg;
+} */
+
+/* #custom-system_update {
+	background-color: @tray;
+	padding: 0 8px 0 2px;
+} */
+
+/*---------------
+    indicator
+---------------*/
+
+/* #keyboard-state label,
+#language {
+	margin-right: 12px;
+	color: @hover-fg;
+} */
+
+/*------------------
+    window title
+------------------*/
+
+/* #window {
+	margin: 0 12px;
+} */
