@@ -28,7 +28,7 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
 		// "tooltip":
-		"tooltip-format": "<b>Discharging</b>: {time}",
+		"tooltip-format": "<b>Discharging</b>: {time} | {power}W",
 		"tooltip-format-charging": "<b>Charging</b>: {time}",
 		// "weighted-average":
 		// "bat-compatibility":

@@ -52,7 +52,6 @@
 	],
 	"modules-right": [
 		"tray",
-		"group/utilities",
 		"group/wheel",
 		"group/connectivity",
 		"custom/trigger"

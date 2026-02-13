@@ -3,34 +3,67 @@
 		// "player":
 		// "ignored-players":
 		// "interval":
-		"format": "{player_icon} {title} - {artist}",
-		"format-paused": "{status_icon} {title} - {artist}",
-		"tooltip-format": "Playing: {title} - {artist}",
-		"tooltip-format-paused": "Paused: {title} - {artist}",
+		"format": "{player_icon} {status_icon} {title} - {artist}",
+		"format-paused": "{player_icon} {status_icon} {title} - {artist}",
+		"tooltip-format": "{player_icon} {status_icon} {title} - {artist}",
+		"tooltip-format-paused": "{player_icon} {status_icon} {title} - {artist}",
 		// "enable-tooltip-len-limits":
 		// "on-click":
 		// "on-click-middle":
 		// "on-click-right":
 		"player-icons": {
-			"default": "󰐊"
+			"chromium": " ",
+			"default": " ",
+			"firefox": " ",
+			"kdeconnect": " ",
+			"mopidy": " ",
+			"mpv": " ",
+			"spotify": " ",
+			"ncspot": " ",
+			"vlc": "󰕼 "
 		},
 		"status-icons": {
-			"paused": "󰏤"
+			"playing": "",
+			"paused": "",
+			"stopped": ""
 		},
-		// "artist-len":
-		// "album-len":
-		// "title-len":
+		// "artist-len": 10,
+		// "album-len": 10,
+		// "title-len": 10,
 		// "dynamic-len":
 		// "dynamic-order":
 		// "dynamic-separator":
 		// "dynamic-importance-order":
 		// "truncate-hours":
-		// "ellipsis":
+		"ellipsis": "...",
 		// "rotate":
 		// "min-length":
-		"max-length": 1000
+		"max-length": 35
 		// "align":
 		// "justify":
 		// "expand":
 	}
+	// "mpris": {
+	// 	"interval": 0,
+	// 	"format": "<span color=\"#a6da95\">{player_icon} </span> <span color=\"#a6da95\">{status_icon}</span> {title}",
+	// 	"format-paused": "<span color=\"#a6da95\">{player_icon} </span> <span color=\"#a6da95\">{status_icon}</span> {title}",
+	// 	"on-click": "playerctl play-pause",
+	// 	"player-icons": {
+	// 		"chromium": " ",
+	// 		"default": " ",
+	// 		"firefox": " ",
+	// 		"kdeconnect": " ",
+	// 		"mopidy": " ",
+	// 		"mpv": " ",
+	// 		"spotify": " ",
+	// 		"ncspot": " ",
+	// 		"vlc": "󰕼 "
+	// 	},
+	// 	"status-icons": {
+	// 		"playing": " ",
+	// 		"paused": " ",
+	// 		"stopped": " "
+	// 	},
+	// 	"title-len" : 30
+	// }
 }

@@ -96,7 +96,8 @@ display_module() {
 	fi
 
 	if ((PAC_UPD + AUR_UPD == 0)); then
-		command printf "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }\n"
+		# command printf "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }\n"
+		exit 1
 	else
 		command printf "{ \"text\": \"󰄠\", \"tooltip\": \"%s\" }\n" "$tooltip"
 	fi

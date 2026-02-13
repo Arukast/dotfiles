@@ -2,7 +2,7 @@
     "custom/unsync": {
         "format": " {}",
         "return-type": "json",
-        "interval": 20,
+        "interval": 1200,
         "exec": "~/.config/waybar/scripts/unsync.sh",
         "exec-if": "~/.config/waybar/scripts/unsync.sh"
     }
