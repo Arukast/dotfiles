@@ -1,83 +1,48 @@
 {
     "clock#time": {
-		// "interval":
-		"format": "{:%H:%M}",
-		// "timezone":
-		// "timezones":
-		// "locale":
-		// "min-length": 4,
-		// "max-length": 5,
-		// "rotate": 0,
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "<b>Standard Time</b>: <span text_transform='lowercase'>{:%I:%M %p}</span>"
-		// "menu":
-		// "menu-file":
-		// "menu-actions":
-		// "expand":
-	},
+        "format": "{:%H:%M}",
+        "tooltip-format": "<b>Standard Time</b>: <span text_transform='lowercase'>{:%I:%M %p}</span>"
+    },
 
-	/*--------------
-	    calendar
-	--------------*/
+    /*--------------
+        calendar
+    --------------*/
 
-	"clock#date": {
-		// "interval":
-		"format": "{:%d-%m-%Y}",
-		// "timezone":
-		// "timezones":
-		// "locale":
-		// "min-length": 1,
-		"max-length": 12,
-		// "rotate":
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "{calendar}",
-		// "menu":
-		// "menu-file":
-		// "menu-actions":
-		// "expand":
-		"calendar": {
-			"mode": "month",
-			"mode-mon-col": 6,
-			// "week-pos":
-			// "on-scroll":
-			"format": {
-				"months": "<span alpha='100%'><b>{}</b></span>",
-				"days": "<span alpha='90%'>{}</span>",
-				// "weeks":
-				"weekdays": "<span alpha='80%'><i>{}</i></span>",
-				"today": "<span alpha='100%'><b><u>{}</u></b></span>"
-			}
-		},
-		"actions": {
-			"on-click": "mode"
-			// "on-click-middle":
-			// "on-click-right":
-			// "on-scroll-up":
-			// "on-scroll-down":
-		}
-	},
+    "clock#date": {
+        "format": "{:%A, %d-%m-%Y}",
+        // Menggunakan <tt> agar font monospace (rata) dan <small> agar tidak terlalu besar
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'>{}</span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
     "custom/slash": {
-		"format": "/",
-		"tooltip": false
-	},
+        "format": "|",
+        "tooltip": false
+    },
+
     "group/time": {
-		"orientation": "horizontal",
-		"modules": [
+        "orientation": "horizontal",
+        "modules": [
             "clock#time",
             "custom/slash",
             "clock#date"
-		]
-	}
+        ]
+    }
 }

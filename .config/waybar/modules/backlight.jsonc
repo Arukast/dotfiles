@@ -5,8 +5,8 @@
 		"format-icons": [
 			"", "", "", "", "", "", "", "", ""
 		],
-		"min-length": 7,
-		"max-length": 7,
+		// "min-length": 7,
+		// "max-length": 7,
 		// "align":
 		// "justify":
 		// "rotate":

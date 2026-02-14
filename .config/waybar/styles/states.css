@@ -9,6 +9,7 @@
 #backlight:hover,
 #custom-hyprpicker:hover,
 #pulseaudio:hover,
+#custom-hyprshot:hover,
 #wireplumber:hover {
 	color: @hover-fg;
 }

@@ -1,12 +1,14 @@
 {
   "include": [
     "~/.config/waybar/modules/network.jsonc",
-    "~/.config/waybar/modules/bluetooth.jsonc"
+    "~/.config/waybar/modules/bluetooth.jsonc",
+		"~/.config/waybar/modules/group/wheel.jsonc"
   ],
 
   "group/connectivity": {
     "orientation": "horizontal",
     "modules": [
+      "group/wheel",
       "bluetooth",
       "network"
     ]

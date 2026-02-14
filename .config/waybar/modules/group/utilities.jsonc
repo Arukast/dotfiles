@@ -1,10 +1,12 @@
 {
 	"include": [
-    	"~/.config/waybar/modules/hyprland/hyprpicker.jsonc"
+    	"~/.config/waybar/modules/hyprland/hyprpicker.jsonc",
+    	"~/.config/waybar/modules/hyprland/hyprshot.jsonc"
   	],
     "group/utilities": {
 		"orientation": "horizontal",
 		"modules": [
+			"custom/hyprshot",
             "custom/hyprpicker"
 		],
 		"drawer": {

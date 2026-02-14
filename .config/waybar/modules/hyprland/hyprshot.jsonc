@@ -1,5 +1,5 @@
 {
-	"custom/hyprpicker": {
+	"custom/hyprshot": {
 		// "exec":
 		// "exec-if":
 		// "exec-on-event":
@@ -8,22 +8,22 @@
 		// "interval":
 		// "restart-interval":
 		// "signal":
-        "format": "",
+        "format": "󱣵",
 		// "format-icons":
 		// "rotate":
 		// "align":
 		// "justify":
 		"min-length": 2,
 		"max-length": 3,
-		"on-click": "hyprpicker -a -f hex",
-		// "on-click-middle":
-		"on-click-right": "hyprpicker -a -f rgb",
+		"on-click": "hyprshot -m region",
+		"on-click-middle": "hyprshot -m window",
+		"on-click-right": "hyprshot -m output",
 		// "on-update":
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
         "tooltip": true,
-        "tooltip-format": "<b>Klik kiri:</b> HEX\n<b>Klik kanan:</b> RGB"
+        "tooltip-format": "<b>Klik Kiri:</b> Region\n<b>Klik Tengah:</b> Window\n<b>Klik Kanan:</b> Monitor"
 		// "escape":
 		// "menu":
 		// "menu-file":

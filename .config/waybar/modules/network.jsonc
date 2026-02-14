@@ -5,8 +5,8 @@
 		"interval": 10,
 		// "family":
 		"format": "󰤨",
-		"format-ethernet": "󰈀",
-		"format-wifi": "{icon}",
+		"format-ethernet": "󰈀 Ethernet",
+		"format-wifi": "{icon} {essid}",
 		// "format-linked":
 		"format-disconnected": "󰤯",
 		"format-disabled": "󰤮",
@@ -16,7 +16,7 @@
 		],
 		// "rotate":
 		"min-length": 2,
-		"max-length": 2,
+		// "max-length": 2,
 		// "align":
 		// "justify":
 		"on-click": "bash $HOME/.config/waybar/scripts/rofi-wifi-menu.sh",

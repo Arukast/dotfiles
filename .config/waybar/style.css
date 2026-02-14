@@ -36,8 +36,7 @@ box#connectivity,
 box#utilities,
 #mpris,
 #tray,
-box#systemInfo,
-box#wheel {
+box#systemInfo {
 	  color: #ffffff;
     border-radius: 35px;
     margin: 0px 3px;
@@ -53,7 +52,13 @@ box#wheel {
 #custom-unsync,
 #systemd-failed-units,
 #privacy,
-#pulseaudio.input {
+#pulseaudio.input,
+#pulseaudio.output,
+#backlight,
+#bluetooth,
+#network,
+#custom-hyprshot,
+#custom-hyprpicker {
   padding: 0px 5px;
 }
 

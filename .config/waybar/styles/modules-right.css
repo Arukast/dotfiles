@@ -27,10 +27,10 @@ box#utilities {
     color: alpha(@on_secondary_fixed, 0.85);
     padding: 0px 12px 0 10px;
 }
-box#wheel {
+/* box#wheel {
 	background: #DAC2A0;
     color: alpha(@on_secondary_fixed, 0.85);
-}
+} */
 box#connectivity {
 	background: #DAC2A0;
     color: alpha(@on_secondary_fixed, 0.85);

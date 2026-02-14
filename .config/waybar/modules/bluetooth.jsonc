@@ -6,13 +6,13 @@
 		"format-disabled": "󰂲",
 		"format-off": "󰂲",
 		"format-on": "󰂰",
-		"format-connected": "󰂱",
+		"format-connected": "󰂱 {device_alias}",
 		// "format-connected-battery":
 		// "format-no-controller":
 		// "format-icons":
 		// "rotate":
 		"min-length": 2,
-		"max-length": 2,
+		// "max-length": 2,
 		// "align":
 		// "justify":
 		"on-click": "blueman-manager",
