@@ -72,17 +72,13 @@
     },
     "backlight": {
       "device": "amdgpu_bl1",
-      "label": "",
-      "slider": true
+      "label": ""
     },
     "volume": {
-      "device": "default",
       "label": "",
       "show-per-app": true,     
       "show-per-app-icon": true,
-      "show-per-app-label": true,
-      "expand-button": true, 
-      "collapse-after-expand": true
+      "show-per-app-label": true
     },
     "buttons-grid": {
       "buttons-per-row": 5,
@@ -96,14 +92,14 @@
         },
         {
           "label": "",
-          "type": "button",
+          "type": "normal",
           "command": "~/.config/swaync/scripts/hyprsunset_rofi.sh"
         },
         {
           "label": "󰈈",
           "type": "toggle",
-          "command": "sh -c 'pidof hypridle >/dev/null && pkill hypridle || hypridle &'",
-          "update-command": "sh -c 'pidof hypridle >/dev/null && echo false || echo true'",
+          "command": "~/.config/swaync/scripts/caffeine.sh toggle",
+          "update-command": "~/.config/swaync/scripts/caffeine.sh status",
           "interval": 2
         },
         {
@@ -122,27 +118,27 @@
         },
         {
           "label": "",
-          "type": "button",
+          "type": "normal",
           "command": "swaync-client -cp && hyprlock"
         },
         {
           "label": "",
-          "type": "button",
-          "command": "swaync-client -cp && hyprlock && systemctl suspend"
+          "type": "normal",
+          "command": "swaync-client -cp && systemctl suspend"
         },
         {
           "label": "󰍃",
-          "type": "button",
+          "type": "normal",
           "command": "swaync-client -cp && hyprctl dispatch exit"
         },
         {
           "label": "",
-          "type": "button",
+          "type": "normal",
           "command": "swaync-client -cp && systemctl reboot"
         },
         {
           "label": "",
-          "type": "button",
+          "type": "normal",
           "command": "swaync-client -cp && systemctl poweroff"
         }
       ]
