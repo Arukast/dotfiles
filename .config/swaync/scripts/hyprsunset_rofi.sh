@@ -2,7 +2,7 @@
 
 # Konfigurasi
 TEMP_MANUAL=5000
-TEMP_EXTRA=3000
+TEMP_EXTRA=3500
 STATE_FILE="/tmp/hyprsunset_mode"
 
 # Menu Rofi

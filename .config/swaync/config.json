@@ -45,8 +45,8 @@
     "mpris",
     "volume",
     "backlight",
+    "title",     
     "dnd",
-    "title",         
     "notifications"
   ],
   "widget-config": {
@@ -73,26 +73,29 @@
     "backlight": {
       "device": "amdgpu_bl1",
       "label": "",
-      "slider": true,
-      "min": 10
+      "slider": true
     },
     "volume": {
       "device": "default",
       "label": "",
-      "slider": true
+      "show-per-app": true,     
+      "show-per-app-icon": true,
+      "show-per-app-label": true,
+      "expand-button": true, 
+      "collapse-after-expand": true
     },
     "buttons-grid": {
       "buttons-per-row": 5,
       "actions": [
         {
-          "label": "✈️",
+          "label": "󰀝",
           "type": "toggle",
           "command": "~/.config/swaync/scripts/airplane.sh toggle",
           "update-command": "~/.config/swaync/scripts/airplane.sh status",
           "interval": 2
         },
         {
-          "label": "☀️",
+          "label": "",
           "type": "button",
           "command": "~/.config/swaync/scripts/hyprsunset_rofi.sh"
         },
@@ -123,9 +126,9 @@
           "command": "swaync-client -cp && hyprlock"
         },
         {
-          "label": "󰒲",
+          "label": "",
           "type": "button",
-          "command": "swaync-client -cp && systemctl suspend"
+          "command": "swaync-client -cp && hyprlock && systemctl suspend"
         },
         {
           "label": "󰍃",
@@ -140,7 +143,7 @@
         {
           "label": "",
           "type": "button",
-          "command": "swaync-client -cp && wlogout"
+          "command": "swaync-client -cp && systemctl poweroff"
         }
       ]
     }

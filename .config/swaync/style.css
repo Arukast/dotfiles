@@ -1,18 +1,23 @@
-/* --- GLOBAL CONFIGURATION --- */
+/* ================================================================= */
+/* GLOBAL CONFIGURATION                         */
+/* ================================================================= */
+
 :root {
-  /* --- COLOR SCHEME BARU --- */
-  --bg-main: rgba(186, 159, 119, 0.5);   /* Background SwayNC */
-  --bg-widget: #DAC2A0;                  /* Background Widget & Notif */
-  --text-color: rgba(24, 26, 47, 0.85);  /* Warna Teks #181a2f @ 85% */
+  /* --- COLOR SCHEME (Earth Tone) --- */
+  --bg-main: rgba(186, 159, 119, 0.5);   /* Background Panel Transparan */
+  --bg-widget: #DAC2A0;                  /* Warna Krem (Widget Dasar) */
+  --text-color: rgba(24, 26, 47, 0.85);  /* Biru Gelap (Hampir Hitam) */
   
-  --hover-bg: rgba(255, 255, 255, 0.3);  /* Hover lebih terang */
-  --active-bg: rgba(255, 255, 255, 0.5); /* Active lebih terang lagi */
-  --border-color: rgba(24, 26, 47, 0.1); /* Border gelap tipis */
+  --hover-bg: rgba(255, 255, 255, 0.3);  /* Efek Hover */
+  --active-bg: #f0e6d2;                  /* Efek Aktif (Putih Gading) */
+  --border-color: rgba(24, 26, 47, 0.1); /* Border Tipis Gelap */
   
-  /* --- DIMENSI SUPER COMPACT --- */
-  --font-std: 12px;       /* Font diperkecil lagi */
-  --font-header: 16px;    /* Header diperkecil */
-  --font-icon: 18px;      /* Icon diperkecil */
+  /* --- DIMENSI (Super Compact) --- */
+  --font-std-2: 12px;
+  --font-std-1: 14px;
+  --font-header-2: 16px;
+  --font-header-1: 18px;
+  --font-icon: 18px;
   
   --border-radius: 14px;
   --button-radius: 10px;
@@ -20,199 +25,248 @@
 
 * {
   font-family: "JetBrainsMono Nerd Font", "Commit Mono Nerd Font", monospace;
-  font-weight: 700; /* Sedikit lebih tebal agar terbaca di background terang */
-  font-size: var(--font-std);
+  font-weight: 700;
+  font-size: var(--font-std-2);
   color: var(--text-color);
 }
 
-/* --- SCROLLBAR HIDDEN --- */
-scrollbar, scrollbar * {
-    all: unset;
-}
+/* Hapus Scrollbar tapi tetap bisa scroll */
+scrollbar, scrollbar * { all: unset; }
 scrolledwindow { margin-right: 0; }
 
-/* --- MAIN WINDOW --- */
+/* ================================================================= */
+/* MAIN WINDOW                              */
+/* ================================================================= */
+
 .control-center {
   background: var(--bg-main);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 8px; /* Padding sangat tipis */
+  padding: 8px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  
-  /* Layout: Widget Atas (Auto) + Notif Bawah (Sisa) */
-  min-height: 80vh;
-  max-height: 80vh;
 }
 
 notificationwindow, blankwindow { background: transparent; }
 
-/* --- HEADER ATAS (Control Center) --- */
-.widget-label {
-    margin: 2px 5px;
-    padding: 0;
-}
-.widget-label > label {
-    font-size: var(--font-header);
-    font-weight: 900;
+/* ================================================================= */
+/* HEADER WIDGETS (Cards)                        */
+/* ================================================================= */
+
+/* Style gabungan untuk Label Atas, DND, dan Title Notifikasi */
+.widget-label, 
+.widget-dnd,
+.widget-title {
+    margin: 3px 0px;
+    background: var(--bg-widget);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
 }
 
-/* --- BUTTONS GRID (Super Compact) --- */
-.widget-buttons-grid {
-    padding: 0;
-    margin: 5px 0;
-    background: transparent;
+/* 1. Header Atas (Control Center) */
+.widget-label { padding: 10px; }
+.widget-label > label { font-size: var(--font-header-1); font-weight: 900;}
+
+/* 2. Do Not Disturb (DND) */
+.widget-dnd { padding: 4px 8px; }
+.widget-dnd > switch {
+    background: rgba(24, 26, 47, 0.1);
+    border-radius: 12px; border: 1px solid var(--border-color);
 }
+.widget-dnd > switch:checked { background: var(--text-color); }
+.widget-dnd > switch slider { background: #fff; border-radius: 10px; }
+
+/* 3. Header Bawah (Notifications Title) */
+.widget-title {
+    padding: 8px 8px;
+    border-top: 1px solid var(--border-color); 
+}
+.widget-title > label { font-size: var(--font-header-2); font-weight: 900; margin: 0; }
+.widget-title > button {
+    font-size: 11px; padding: 2px 8px; margin-left: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--border-color); border-radius: 8px;
+    color: var(--text-color); font-weight: bold;
+    text-shadow: none; box-shadow: none;
+}
+.widget-title > button:hover {
+    background: #e68d8d; color: var(--text-color); border-color: #e68d8d;
+}
+
+/* ================================================================= */
+/* BUTTONS GRID                               */
+/* ================================================================= */
+
+.widget-buttons-grid { padding: 0px; margin: 3px 0px; background: transparent; }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
-  min-width: 40px;  /* Lebar tombol: 40px */
-  min-height: 40px; /* Tinggi tombol: 40px */
-  margin: 3px;
-  padding: 0;
-  background: var(--bg-widget); /* Warna dasar widget #DAC2A0 */
+  min-width: 40px; min-height: 40px; margin: 0px; padding: 0;
+  background: var(--bg-widget);
   border-radius: var(--button-radius);
   border: 1px solid var(--border-color);
   box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button label {
-    font-size: var(--font-icon);
-    margin: 0;
-    color: var(--text-color);
+    font-size: var(--font-icon); margin: 0; color: var(--text-color);
 }
-
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
-  background: var(--hover-bg);
-}
-
-/* Active State */
+.widget-buttons-grid > flowbox > flowboxchild > button:hover { background: var(--hover-bg); }
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
-  background: #f0e6d2; /* Warna terang (off-white) saat aktif agar kontras */
-  border-color: rgba(24, 26, 47, 0.3);
+  background: var(--active-bg); border-color: rgba(24, 26, 47, 0.3);
 }
 
-/* Tombol Bahaya (Logout, Reboot, Power) */
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(8),
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(9),
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(10) {
-    color: #a63a3a; /* Merah gelap agar pas dengan tema krem */
-}
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(8):hover,
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(9):hover,
-.widget-buttons-grid > flowbox > flowboxchild > button:nth-child(10):hover {
-    background: rgba(166, 58, 58, 0.2);
-}
+/* --- Posisi Icon Spesifik (Center Fix) --- */
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(1) > button label { margin-right: 2px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(2) > button label { margin-right: 7px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(3) > button label { margin-right: 5px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(4) > button label { margin-right: 7px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(5) > button label { margin-right: 8px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(6) > button label { margin-right: 3px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(7) > button label { margin-right: 1px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(8) > button label { margin-right: 1px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(9) > button label { margin-right: 4px; }
+.widget-buttons-grid > flowbox > flowboxchild:nth-child(10) > button label { margin-right: 2px; }
 
+/* ================================================================= */
+/* MEDIA & SLIDERS                               */
+/* ================================================================= */
 
-/* --- MPRIS (Media Player - Compact) --- */
-.widget-mpris {
-  background: var(--bg-widget);
-  border-radius: var(--border-radius);
-  padding: 0;
-  margin: 5px 0;
-  border: 1px solid var(--border-color);
+/* --- MPRIS PLAYER BUTTONS --- */
+.widget-mpris-player, .widget-mpris-title, .widget-mpris-subtitle {
+  color: #fff;
 }
-.widget-mpris .widget-mpris-player {
-  padding: 6px;
-  border-radius: var(--border-radius);
+.widget-mpris-player button * {
+    color: #ffffff;
 }
-.widget-mpris-title { font-weight: bold; font-size: 13px; }
-.widget-mpris-subtitle { font-size: 11px; opacity: 0.7; }
-
-.widget-mpris-player > box > button {
-    padding: 2px;
-    margin: 0 2px;
-    border-radius: 100%;
+.widget-mpris-player button:hover {
+    background: #ffffff;
 }
-.widget-mpris-player > box > button:hover {
-    background: var(--hover-bg);
+.widget-mpris-player button:hover * {
+    color: rgba(24, 26, 47, 0.85); 
 }
 
 
-/* --- VOLUME & BACKLIGHT (Compact) --- */
+/* Volume & Backlight */
 .widget-volume, .widget-backlight {
   background: var(--bg-widget);
-  border-radius: 10px;
-  margin: 4px 0;
-  padding: 4px 8px;
-  border: 1px solid var(--border-color);
+  border-radius: 10px; padding: 4px 8px;
+  border: 1px solid var(--border-color); color: var(--text-color);
+}
+
+.widget-volume, .widget-backlight {
+  margin: 3px 0px;
+}
+
+.widget-volume > box > label, .widget-backlight > box > label {
+    font-size: 14px; font-weight: 800; color: var(--text-color); margin-top: 2px;
 }
 .widget-volume label, .widget-backlight label { 
-    font-size: 14px; 
-    margin-right: 6px; 
+    margin-top: 2px;
+}
+.widget-backlight label {
+  margin-left: 3px;
+}
+.widget-volume label {
+  margin-left: 1px;
 }
 .widget-volume trough, .widget-backlight trough { 
-    min-height: 4px; 
-    border-radius: 10px; 
-    background: rgba(24, 26, 47, 0.1); /* Track gelap transparan */
-    border: none; 
+    min-height: 4px; border-radius: 10px; background: rgba(24, 26, 47, 0.1); border: none; 
 }
 .widget-volume highlight, .widget-backlight highlight { 
-    border-radius: 10px; 
-    background: var(--text-color); /* Bar gelap */
+    border-radius: 10px; background: var(--text-color); 
 }
 .widget-volume slider, .widget-backlight slider { 
-    background: var(--text-color); 
-    border-radius: 100%; 
-    min-height: 10px; min-width: 10px; 
-    margin: -3px 0; 
-    box-shadow: none; 
+    background: var(--text-color); border-radius: 100%; 
+    min-height: 12px; min-width: 12px; margin: -3px 0px; box-shadow: none; 
 }
 
+/* Drawer / Expander */
+.widget-volume > box > button.per-app-volume {
+    background: transparent; border: none; padding: 2px; margin-left: 5px;
+    color: var(--text-color); font-size: 14px;
+}
+.widget-volume > box > button.per-app-volume:hover { background: rgba(0,0,0,0.1); border-radius: 100%; }
+.widget-volume > revealer > list {
+    background: rgba(0, 0, 0, 0.05); border-radius: 8px; margin-top: 5px; padding: 5px;
+}
+.widget-volume > revealer > list > row { padding: 4px; margin: 2px 0; background: transparent; }
+.widget-volume > revealer > list > row:hover { background: rgba(255, 255, 255, 0.2); border-radius: 6px; }
 
-/* --- HEADER NOTIFIKASI (Tengah) --- */
-.widget-title {
-    margin: 8px 0 4px 0;
-    border-top: 1px solid var(--border-color);
-    padding-top: 8px;
+/* Tooltip Fix (Hover Slider) */
+tooltip {
+    background: #DAC2A0; color: rgba(24, 26, 47, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 8px;
 }
-.widget-title > label {
-    font-size: 13px;
-    font-weight: bold;
-}
-.widget-title > button {
-    font-size: 11px;
-    padding: 3px 8px;
-    background: var(--bg-widget);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--text-color);
-}
-.widget-title > button:hover {
-    background: #e68d8d; /* Merah pastel */
-    color: var(--text-color);
+tooltip label { margin: 4px; font-weight: bold; }
+
+/* ================================================================= */
+/* NOTIFICATIONS & DRAWER                        */
+/* ================================================================= */
+
+/* --- DRAWER (Notification Group) --- */
+.notification-group { margin-bottom: 5px; background: transparent; }
+
+/* Header Drawer */
+.notification-group-header {
+  margin: 4px 0; padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.15); /* Transparan/Terang (FIXED) */
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
-
-/* --- NOTIFICATIONS AREA --- */
-.widget-notifications {
-    /* Tetap memaksa setengah layar (atau sisa ruang) */
-    min-height: 40vh; 
-    overflow-y: auto;
-    margin-top: 4px;
+/* Fix "Pill" background pada nama aplikasi */
+.notification-group-header > label {
+  background: transparent; margin: 0 5px;
+  font-weight: 900; font-size: 13px; color: var(--text-color);
 }
 
-/* Styling Notifikasi */
-.notification-row { margin: 4px 0; outline: none; }
+.notification-group-header > button {
+  background: transparent; border: none; border-radius: 100%;
+  padding: 2px; margin: 0px 0px; min-width: 24px; min-height: 24px;
+}
+.notification-group-header > button:hover { background: rgba(255, 255, 255, 0.3); }
+.notification-group-header > .close-button:hover { background: #e68d8d; color: var(--text-color); }
+.notification-group-icon { margin-right: 8px; padding: 2px; }
+
+/* --- NOTIFIKASI INDIVIDUAL --- */
+.notification-row { margin: 0px 0px; outline: none; }
 
 .notification {
-  background: var(--bg-widget); /* #DAC2A0 */
+  background: var(--bg-widget);
+  color: var(--text-color);
   border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border: 0px var(--border-color);
   padding: 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s ease;
 }
 
 .notification-content { padding: 8px; }
-.image { border-radius: 100%; margin-right: 8px; }
+.image { border-radius: 0px; margin-right: 8px; }
 .summary { font-weight: 800; font-size: 13px; color: var(--text-color); }
 .body { font-size: 12px; color: var(--text-color); opacity: 0.8; }
 .time { font-size: 10px; opacity: 0.6; margin-right: 5px; }
 
+/* Tombol Close */
 .close-button {
-  background: transparent;
-  color: var(--text-color);
-  border-radius: 100%;
-  padding: 2px;
-  min-width: 18px; min-height: 18px;
+  background: transparent; color: var(--text-color);
+  border-radius: 100%; padding: 2px; min-width: 18px; min-height: 18px;
 }
 .close-button:hover { background: rgba(24, 26, 47, 0.1); }
+
+/* --- HOVER EFFECT (Make it Bright!) --- */
+.notification-row:hover .notification, 
+.notification-row:focus .notification {
+  background: #fff8ed ; /* Putih Gading Sangat Terang (FIXED) */
+  border-color: rgba(24, 26, 47, 0.4);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Paksa Teks Hitam saat Hover */
+.notification-row:hover .summary,
+.notification-row:hover .body,
+.notification-row:hover .time {
+  color: #000000; background: transparent;
+}
+.notification-row:hover .close-button { opacity: 1; background: rgba(24, 26, 47, 0.1); }
