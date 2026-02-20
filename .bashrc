@@ -33,7 +33,7 @@ if (( UID != 0 )); then
     alias root='sudo -i'
     alias reboot='sudo systemctl reboot'
     alias poweroff='sudo systemctl poweroff'
-    alias update='sudo pacman -Syu'
+    alias update='printf "\nUpdating pacman packages...\n" && sudo pacman -Syu && printf "\nUpdating AUR packages...\n" && yay -Syu && printf "\nUpdating Flatpak packages...\n" && flatpak update'
     alias netctl='sudo netctl'
 fi
 

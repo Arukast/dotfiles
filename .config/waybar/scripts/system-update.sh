@@ -20,8 +20,9 @@ FG_RESET="\e[39m"
 FAILURE=false
 PAC_UPD=0
 AUR_UPD=0
+FLAT_UPD=0
 
-TIMEOUT=10
+TIMEOUT=30
 HELPERS=(aura paru pikaur trizen yay)
 
 printf() {
@@ -66,6 +67,18 @@ check_updates() {
 	fi
 
 	AUR_UPD=$(grep -c . <<< "$aur_output")
+
+	local flat_output flat_status
+
+	flat_output=$(timeout $TIMEOUT flatpak remote-ls --updates 2>/dev/null)
+	flat_status=$?
+
+	if ((${#flat_output} > 0 && flat_status != 0)); then
+		FAILURE=true
+		return 1
+	fi
+
+	FLAT_UPD=$(grep -c . <<< "$flat_output")
 }
 
 update_packages() {
@@ -75,6 +88,11 @@ update_packages() {
 	if [[ -n $HELPER ]]; then
 		printf "\n%bUpdating AUR packages...%b\n" "$FG_BLUE" "$FG_RESET"
 		command "$HELPER" -Syu
+	fi
+
+	if command -v flatpak &> /dev/null; then
+		printf "\n%bUpdating Flatpak packages...%b\n" "$FG_BLUE" "$FG_RESET"
+		flatpak update
 	fi
 
 	notify-send "Update Complete" -i "package-install"
@@ -95,7 +113,11 @@ display_module() {
 		tooltip+="\n<b>AUR($HELPER)</b>: $AUR_UPD"
 	fi
 
-	if ((PAC_UPD + AUR_UPD == 0)); then
+	if command -v flatpak &> /dev/null; then
+		tooltip+="\n<b>Flatpak</b>: $FLAT_UPD"
+	fi
+
+	if ((PAC_UPD + AUR_UPD + FLAT_UPD == 0)); then
 		# command printf "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }\n"
 		exit 1
 	else

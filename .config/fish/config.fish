@@ -56,7 +56,7 @@ if status is-interactive # Commands to run in interactive sessions can go here
         alias root 'sudo -i'
         alias reboot 'sudo systemctl reboot'
         alias poweroff 'sudo systemctl poweroff'
-        alias update 'sudo pacman -Syu'   # Sudah diperbaiki (Syu)
+        alias update 'printf "\nUpdating pacman packages...\n" && sudo pacman -Syu && printf "\nUpdating AUR packages...\n" && yay -Syu && printf "\nUpdating Flatpak packages...\n" && flatpak update'
         alias netctl 'sudo netctl'
         
         # Catatan: Trik "alias sudo='sudo '" ala Bash tidak jalan di Fish.
