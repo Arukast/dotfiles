@@ -9,6 +9,7 @@
     "orientation": "horizontal",
     "modules": [
       "group/wheel",
+			"pulseaudio#output",
       "bluetooth",
       "network"
     ]

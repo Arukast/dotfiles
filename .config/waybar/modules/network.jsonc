@@ -16,7 +16,7 @@
 		],
 		// "rotate":
 		"min-length": 2,
-		// "max-length": 2,
+		"max-length": 11,
 		// "align":
 		// "justify":
 		"on-click": "bash $HOME/.config/waybar/scripts/rofi-wifi-menu.sh",

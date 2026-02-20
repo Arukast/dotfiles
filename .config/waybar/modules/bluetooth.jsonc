@@ -12,7 +12,7 @@
 		// "format-icons":
 		// "rotate":
 		"min-length": 2,
-		// "max-length": 2,
+		"max-length": 11,
 		// "align":
 		// "justify":
 		"on-click": "blueman-manager",

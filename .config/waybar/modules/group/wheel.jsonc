@@ -6,9 +6,9 @@
     "group/wheel": {
 		"orientation": "horizontal",
 		"modules": [
-			"pulseaudio#output",
-            "backlight",
-            "pulseaudio#input"
+			// "pulseaudio#output",
+            "pulseaudio#input",
+            "backlight"
 		],
 		"drawer": {
 			// "transition-duration":
