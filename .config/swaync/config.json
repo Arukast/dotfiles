@@ -84,11 +84,9 @@
       "buttons-per-row": 5,
       "actions": [
         {
-          "label": "󰀝",
-          "type": "toggle",
-          "command": "~/.config/swaync/scripts/airplane.sh toggle",
-          "update-command": "~/.config/swaync/scripts/airplane.sh status",
-          "interval": 2
+          "label": "⏼",
+          "type": "normal",
+          "command": "~/.config/hypr/scripts/toggle_gpu.sh"
         },
         {
           "label": "",
@@ -134,12 +132,12 @@
         {
           "label": "",
           "type": "normal",
-          "command": "swaync-client -cp && systemctl reboot"
+          "command": "systemctl reboot"
         },
         {
           "label": "",
           "type": "normal",
-          "command": "swaync-client -cp && systemctl poweroff"
+          "command": "systemctl poweroff"
         }
       ]
     }

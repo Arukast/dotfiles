@@ -4,7 +4,7 @@
 
 :root {
   /* --- COLOR SCHEME (Earth Tone) --- */
-  --bg-main: rgba(186, 159, 119, 0.5);   /* Background Panel Transparan */
+  --bg-main: rgba(186, 159, 119, 0);   /* Background Panel Transparan */
   --bg-widget: #DAC2A0;                  /* Warna Krem (Widget Dasar) */
   --text-color: rgba(24, 26, 47, 0.85);  /* Biru Gelap (Hampir Hitam) */
   

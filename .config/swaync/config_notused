@@ -1,0 +1,12 @@
+"buttons-grid": {
+      "buttons-per-row": 5,
+      "actions": [
+        {
+          "label": "󰀝",
+          "type": "toggle",
+          "command": "~/.config/swaync/scripts/airplane.sh toggle",
+          "update-command": "~/.config/swaync/scripts/airplane.sh status",
+          "interval": 2
+        }
+      ]
+}

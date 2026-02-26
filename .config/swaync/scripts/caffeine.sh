@@ -12,7 +12,7 @@ case "$1" in
             notify-send -u low -r 9981 "Caffeine Mode: OFF" "Suspend/Sleep diaktifkan kembali" -i "coffee-off-outline"
         else
             # Jika mati, jalankan di background (&)
-            $INHIBIT_CMD &
+            $INHIBIT_CMD > /dev/null 2>&1 & disown
             notify-send -u low -r 9981 "Caffeine Mode: ON" "PC tidak akan tidur (Layar tetap bisa mati)" -i "coffee-outline"
         fi
         ;;
