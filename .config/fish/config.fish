@@ -47,6 +47,7 @@ if status is-interactive # Commands to run in interactive sessions can go here
     alias openports 'ss --all --numeric --processes --ipv4 --ipv6'
     alias pgg 'ps -Af | grep'
     alias .. 'cd ..'
+    alias spotify_spicetify 'spicetify config spotify_path "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify" && spicetify config prefs_path /home/arukast/.var/app/com.spotify.Client/config/spotify/prefs && sudo chmod a+wr /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify && sudo chmod a+wr -R /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps && spicetify backup apply'
 
     # --- Privileged access ---
     # Logika "if UID != 0" versi Fish
@@ -94,6 +95,19 @@ if status is-interactive # Commands to run in interactive sessions can go here
     alias :Q 'exit'
     alias :x 'exit'
     alias cd.. 'cd ..'
+
+    # Cek apakah SSD menggunakan driver ntfs3 atau ntfs-3g (fuse)
+    alias checkmount 'mount | grep -E "sd[a-z][0-9]"'
+
+    # Cek apakah TRIM didukung oleh hardware/enclosure (Lihat kolom DISC-GRAN)
+    # Jika nilainya bukan 0B, berarti TRIM didukung
+    alias checktrim 'lsblk -d -o NAME,SIZE,MODEL,DISC-GRAN,DISC-MAX'
+
+    # Cek status "dirty" NTFS tanpa melakukan perubahan (Dry run)
+    # alias checkntfs 'sudo ntfsfix -n /dev/sda2'
+
+    # Jalankan TRIM secara manual pada semua drive yang mendukung
+    alias dotrim 'sudo fstrim -av'
 	
 end
 
