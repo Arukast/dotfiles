@@ -2,7 +2,7 @@
     Control Center
 -----------------*/
 
-#custom-trigger {
+#custom-swaync {
 	background: #DAC2A0;
     color: alpha(@on_secondary_fixed, 0.85);
     padding: 0px 31px 0 29px;

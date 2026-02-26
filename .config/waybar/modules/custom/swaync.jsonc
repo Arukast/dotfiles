@@ -1,0 +1,41 @@
+{
+    "custom/swaync": {
+		"exec": "swaync-client -swb",
+		"exec-if": "which swaync-client",
+		// "exec-on-event":
+		// "hide-empty-text":
+		"return-type": "json",
+		// "interval":
+		// "restart-interval":
+		// "signal":
+		"format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "",
+            "dnd-notification": "󱏧",
+            "dnd-none": "󱏨",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "",
+            "default": ""
+        },
+		// "rotate":
+		// "min-length": 4,
+		// "max-length": 4,
+		// "align":
+		// "justify":
+		"on-click": "swaync-client -t -sw",
+		// "on-click-middle":
+		"on-click-right": "swaync-client -d -sw",
+		// "on-update":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		// "smooth-scrolling-threshold":
+		"tooltip": true,
+		// "tooltip-format": "Control Center",
+		"escape": true
+		// "menu":
+		// "menu-file":
+		// "menu-actions":
+		// "expand":
+	}
+}

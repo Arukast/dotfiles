@@ -23,7 +23,7 @@
 		"~/.config/waybar/modules/group/connectivity.jsonc",
 		"~/.config/waybar/modules/group/wheel.jsonc",
 		"~/.config/waybar/modules/group/systemInfo.jsonc",
-		"~/.config/waybar/modules/custom/user.jsonc",
+		"~/.config/waybar/modules/custom/swaync.jsonc",
 
 
 		// modules that are not included by default:
@@ -55,7 +55,7 @@
 		"group/utilities",
 		// "group/wheel",
 		"group/connectivity",
-		"custom/trigger"
+		"custom/swaync"
 	],
 
 	// "expand-center":

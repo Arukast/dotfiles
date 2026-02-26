@@ -10,7 +10,7 @@ window#waybar {
   transition-duration: 0.5s;
   /* 56 52 46 */
   /* color: #353436; */
-  background:rgba(186, 159, 119, 0.5);
+  background:rgba(186, 159, 119, 0);
   border-radius: 35px;  
 }
 
@@ -31,7 +31,7 @@ window#waybar.hidden {
 #custom-distro,
 box#time,
 #workspaces,
-#custom-trigger,
+#custom-swaync,
 box#connectivity,
 box#utilities,
 #mpris,
