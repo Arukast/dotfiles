@@ -1,0 +1,39 @@
+output eDP-1 {
+  mode 1920x1080@144
+  scale 1
+  alias $INTERNAL
+}
+
+output "Xiaomi Corporation Mi Monitor *" {
+  mode 1920x1080@180
+  scale 1
+  alias $MIMONITOR
+}
+
+output "ViewSonic Corporation VA2432 100Hz *" {
+  mode 1920x1080@100
+  scale 1
+  alias $VA2432
+}
+
+# Profil saat laptop tidak dicolok monitor eksternal
+profile undocked {
+    output $INTERNAL enable 
+}
+
+# Profil saat dicolok ke monitor di rumah/kantor
+profile home_setup {
+    output $INTERNAL enable position 0,0
+    
+    # Ganti "MerekMonitorHDMI" dengan data dari hyprctl
+    output $MIMONITOR enable position 1920,0
+
+    #Menggunakan kriteria ViewSonic untuk DP-2
+    output $VA2432 enable position 3840,0
+}
+
+# Profil fallback jika disambungkan ke proyektor/monitor acak yang tidak dikenal
+profile unknown_display {
+    output $INTERNAL enable
+    ...output * enable
+}
