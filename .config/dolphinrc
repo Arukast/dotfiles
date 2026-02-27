@@ -3,8 +3,7 @@ PreviewSize=32
 
 [General]
 GlobalViewProps=false
-ShowFullPath=true
-ShowStatusBar=FullWidth
+ModifiedStartupSettings=false
 Version=202
 ViewPropsTimestamp=2026,1,22,23,48,58.116
 
