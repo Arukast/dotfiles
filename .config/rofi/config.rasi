@@ -8,7 +8,7 @@
 
 configuration {
 	/*---------- General setting ----------*/
-	modi: "drun,run,filebrowser,window";
+	modi: "drun,power:~/.config/rofi/scripts/power.sh";
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
