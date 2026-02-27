@@ -15,15 +15,15 @@
 		// "max-length": 2,
 		// "align":
 		// "justify":
-		"on-click": "${HOME}/.config/rofi/launchers/type-1/launcher.sh",
+		"on-click": "${HOME}/.config/rofi/launchers/launcher.sh",
 		// "on-click-middle": Dipake buat nampilin List Kebinds
-		"on-click-right": "${HOME}/.config/rofi/powermenu/type-1/powermenu.sh",
+		// "on-click-right": "~/.config/waybar/scripts/ai_launcher.sh",
 		// "on-update":
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
-		"tooltip": true,
-        "tooltip-format": "<b>Left-Click:</b> App Launcher\n<b>Right-Click:</b> Powermenu",
+		// "tooltip": true,
+        "tooltip-format": "<b>Left-Click:</b> App Launcher\n<b>Right-Click:</b> Shortcut Menu",
 		"escape": true
 		// "menu":
 		// "menu-file":
