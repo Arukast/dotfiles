@@ -18,13 +18,15 @@
 	-------------------*/
 
 	"pulseaudio#output": {
-		"format": "{icon}  {volume}%",
+		// "format": "{icon}  {volume}",
+		"format": "{icon}",
 		// "format-bluetooth":
-		"format-muted": "{icon}  {volume}%",
+		// "format-muted": "{icon}  {volume}",
+		"format-muted": "{icon}",
 		// "format-source":
 		// "format-source-muted":
 		"format-icons": {
-			"default": [ "", "", "" ],
+			"default": [ "", " ", " " ],
 			"default-muted": "󰖁",
 			"headphone": "󰋋",
 			"headphone-muted": "󰟎",
@@ -33,7 +35,7 @@
 		},
 		// "rotate":
 		// "states":
-		// "min-length": 7,
+		"min-length": 2,
 		// "max-length": 7,
 		// "align":
 		// "justify":
@@ -65,12 +67,14 @@
 		"format": "{format_source}",
 		// "format-bluetooth":
 		// "format-muted":
-		"format-source": "󰍬 {volume}%",
-		"format-source-muted": "󰍭 {volume}%",
+		// "format-source": "󰍬 {volume}",
+		"format-source": "󰍬",
+		// "format-source-muted": "󰍭 {volume}",
+		"format-source-muted": "󰍭",
 		// "format-icons":
 		// "rotate":
 		// "states":
-		// "min-length": 8,
+		"min-length": 1,
 		// "max-length": 8,
 		// "align":
 		// "justify":

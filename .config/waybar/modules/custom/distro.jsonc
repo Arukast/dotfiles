@@ -22,8 +22,8 @@
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
-		"tooltip": false,
-		// "tooltip-format":
+		"tooltip": true,
+        "tooltip-format": "<b>Left-Click:</b> App Launcher\n<b>Right-Click:</b> Powermenu",
 		"escape": true
 		// "menu":
 		// "menu-file":

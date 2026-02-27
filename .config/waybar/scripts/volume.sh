@@ -142,7 +142,7 @@ main() {
 			DEV_DEF="@DEFAULT_SOURCE@"
 			DEV_STATE="source-mute"
 			DEV_VOLUME="source-volume"
-			DEV_ICON="mic-volume"
+			DEV_ICON="microphone-sensitivity"
 			DEV_NAME="Microphone"
 			;;
 		output)

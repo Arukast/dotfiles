@@ -1,9 +1,9 @@
 {
 	"memory": {
 		"interval": 5,
-		"format": "󰘚 {percentage}%",
-		"format-warning": "󰀧 {percentage}%",
-		"format-critical": "󰀧 {percentage}%",
+		"format": "󰘚 {percentage}",
+		"format-warning": "󰀧 {percentage}",
+		"format-critical": "󰀧 {percentage}",
 		// "format-icons":
 		// "rotate":
 		"states": {
@@ -22,7 +22,7 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
 		// "tooltip":
-		"tooltip-format": "Memory Used: {used:0}/{total:0} GB"
+		"tooltip-format": "Memory Usage in Percentage\nMemory Used: {used:0}/{total:0} GB"
 		// "menu":
 		// "menu-file":
 		// "menu-actions":

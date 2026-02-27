@@ -36,10 +36,11 @@ box#connectivity,
 box#utilities,
 #mpris,
 #tray,
-box#systemInfo {
+box#systemInfo,
+#custom-cava {
 	  color: #ffffff;
     border-radius: 35px;
-    margin: 0px 3px;
+    margin: 0px 2px;
     padding: 0px 10px;
     transition: all 0.3s ease-in-out;
 }
@@ -59,7 +60,7 @@ box#systemInfo {
 #network,
 #custom-hyprshot,
 #custom-hyprpicker {
-  padding: 0px 5px;
+  padding: 0px 4px 0px 4px;
 }
 
 /* --- IMPORTS --- */

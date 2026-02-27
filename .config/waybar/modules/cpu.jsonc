@@ -1,9 +1,9 @@
 {
 	"cpu": {
 		"interval": 5,
-		"format": "󰍛 {usage}%",
-		"format-warning": "󰀨 {usage}%",
-		"format-critical": "󰀨 {usage}%",
+		"format": "󰍛 {usage}",
+		"format-warning": "󰀨 {usage}",
+		"format-critical": "󰀨 {usage}",
 		// "format-icons":
 		// "min-length": 7,
 		// "max-length": 7,
@@ -21,7 +21,8 @@
 		// "on-scroll-up":
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
-		"tooltip": true
+		"tooltip": true,
+		"tooltip-format": "CPU Usage in Percentage"
 		// "expand":
 	}
 }

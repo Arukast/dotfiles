@@ -23,7 +23,7 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
         "tooltip": true,
-        "tooltip-format": "<b>Klik Kiri:</b> Region\n<b>Klik Tengah:</b> Window\n<b>Klik Kanan:</b> Monitor"
+        "tooltip-format": "<b>Left-Click:</b> Region\n<b>Middle-Click:</b> Window\n<b>Right-Click:</b> Monitor"
 		// "escape":
 		// "menu":
 		// "menu-file":

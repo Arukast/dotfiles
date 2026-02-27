@@ -23,7 +23,7 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
         "tooltip": true,
-        "tooltip-format": "<b>Klik kiri:</b> HEX\n<b>Klik kanan:</b> RGB"
+        "tooltip-format": "<b>Left-Click:</b> HEX\n<b>Right-Click:</b> RGB"
 		// "escape":
 		// "menu":
 		// "menu-file":

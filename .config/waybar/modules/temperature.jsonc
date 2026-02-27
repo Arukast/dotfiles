@@ -8,8 +8,8 @@
 		"critical-threshold": 80,
 		"interval": 5,
 		// "format-warning":
-		"format-critical": "󰀦 {temperatureC}°C",
-		"format": "{icon} {temperatureC}°C",
+		"format-critical": "󰀦 {temperatureC}",
+		"format": "{icon} {temperatureC}",
 		"format-icons": [
 			"󱃃", "󰔏", "󱃂"
 		],
@@ -26,7 +26,7 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
 		// "tooltip":
-		"tooltip-format": "Device Temperature"
+		"tooltip-format": "Device Temperature in Celcius"
 		// "menu":
 		// "menu-file":
 		// "menu-actions":

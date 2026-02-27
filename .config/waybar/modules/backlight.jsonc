@@ -1,11 +1,12 @@
 {
 	"backlight": {
 		// "interval":
-		"format": "{icon} {percent}%",
+		// "format": "{icon} {percent}",
+		"format": "{icon}",
 		"format-icons": [
 			"", "", "", "", "", "", "", "", ""
 		],
-		// "min-length": 7,
+		"min-length": 1,
 		// "max-length": 7,
 		// "align":
 		// "justify":
@@ -22,8 +23,8 @@
 		// "reverse-mouse-scrolling":
 		// "scroll-step":
 		// "min-brightness":
-		"tooltip": false
-		// "tooltip-format":
+		"tooltip": true,
+		"tooltip-format": "Scroll to adjust the backlight"
 		// "menu":
 		// "menu-file":
 		// "menu-actions":

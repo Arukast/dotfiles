@@ -9,12 +9,14 @@
 			"warning": 20,
 			"critical": 10
 		},
-		"format": "{icon} {capacity}%",
-		"format-time": "{H}h {M}min",
+		"format": "{icon} {capacity}",
 		"format-icons": [
 			"󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
 		],
-		"format-charging": "󰉁 {capacity}%",
+		"format-time": "{H}h {M}min",
+		"format-charging": "󰂄 {capacity}",
+		"format-plugged": "󰂄 {capacity}",
+		"format-full": "󱈑 {capacity}",
 		// "min-length": 7,
 		// "max-length": 7,
 		// "align":

@@ -11,7 +11,7 @@
 		// "format-no-controller":
 		// "format-icons":
 		// "rotate":
-		"min-length": 2,
+		"min-length": 1,
 		"max-length": 11,
 		// "align":
 		// "justify":

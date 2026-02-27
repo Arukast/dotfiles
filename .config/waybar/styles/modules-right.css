@@ -35,3 +35,9 @@ box#connectivity {
 	background: #DAC2A0;
     color: alpha(@on_secondary_fixed, 0.85);
 }
+
+#custom-cava {
+    background: #DAC2A0;
+    color: alpha(@on_secondary_fixed, 0.85);
+    font-size: 16px;
+}
