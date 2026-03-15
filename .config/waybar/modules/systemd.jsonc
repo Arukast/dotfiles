@@ -5,6 +5,6 @@
 		"format-alt": "{nr_failed} failed systemd unit(s)",
 		"format-ok": "✓",
 		"system": true, 		
-		"user": true,
+		"user": true
 	}
 }
