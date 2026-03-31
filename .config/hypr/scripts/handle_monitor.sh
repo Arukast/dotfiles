@@ -2,18 +2,20 @@
 
 handle() {
   case $1 in monitoradded*)
-    # Memindahkan workspace 4-6 ke monitor HDMI saat dicolok
-    hyprctl dispatch moveworkspacetomonitor 5 HDMI-A-1
-    hyprctl dispatch moveworkspacetomonitor 6 HDMI-A-1
-    hyprctl dispatch moveworkspacetomonitor 7 HDMI-A-1
+    # Pindahkan workspace ke HDMI
+    for i in 5 6 7; do hyprctl dispatch moveworkspacetomonitor $i HDMI-A-1; done
     
-    # Memindahkan workspace 7-9 ke monitor DP saat dicolok
-    hyprctl dispatch moveworkspacetomonitor 8 DP-2
-    hyprctl dispatch moveworkspacetomonitor 9 DP-2
-    hyprctl dispatch moveworkspacetomonitor 10 DP-2
+    # Pindahkan workspace ke DP-2
+    for i in 8 9 10; do hyprctl dispatch moveworkspacetomonitor $i DP-2; done
 
-    # Memaksa Waybar merender ulang UI di layar baru
-    killall -SIGUSR2 waybar
+    # Refresh Waybar
+    killall waybar 2>/dev/null
+
+    # Tunggu sepersekian detik agar Hyprland selesai merender monitor baru
+    sleep 0.2
+
+    # Jalankan kembali Waybar dan buang log-nya agar tidak nyangkut di terminal
+    waybar > /dev/null 2>&1 &
   esac
 }
 
