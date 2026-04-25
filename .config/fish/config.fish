@@ -109,6 +109,9 @@ if status is-interactive # Commands to run in interactive sessions can go here
     # Jalankan TRIM secara manual pada semua drive yang mendukung
     alias dotrim 'sudo fstrim -av'
 
+    # Error opening terminal: xterm-kitty.
+    alias xterm-kitty 'echo export TERM=xterm-256color'
+
     # ============================================================
     #  AI Stack — Fish Shell Functions
     #  Place in: ~/.config/fish/functions/ (one file per function)
