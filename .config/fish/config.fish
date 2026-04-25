@@ -229,3 +229,6 @@ set -x CCACHE_DIR /home/arukast/.ccache
 set -x CCACHE_MAXSIZE 5G
 
 fish_add_path /home/arukast/.spicetify
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+fish_add_path "$HOME/.local/bin"

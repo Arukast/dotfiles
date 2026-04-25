@@ -74,3 +74,5 @@ function code-dot() {
     TARGET="${1:-.}"
     GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME code "$TARGET"
 }
+
+. "$HOME/.local/bin/env"
