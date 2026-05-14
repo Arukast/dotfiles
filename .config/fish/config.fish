@@ -47,7 +47,42 @@ if status is-interactive # Commands to run in interactive sessions can go here
     alias openports 'ss --all --numeric --processes --ipv4 --ipv6'
     alias pgg 'ps -Af | grep'
     alias .. 'cd ..'
-    alias spotify_spicetify 'spicetify config spotify_path "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify" && spicetify config prefs_path /home/arukast/.var/app/com.spotify.Client/config/spotify/prefs && sudo chmod a+wr /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify && sudo chmod a+wr -R /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps && spicetify backup apply'
+    # Spicetify configuration for Arch Linux (AUR/Repo) Spotify
+    # Spicetify configuration for Arch Linux (AUR/Repo/Launcher) Spotify
+    function spotify_spicetify
+        # Detect Spotify path (prioritize spotify-launcher if present)
+        set -l spotify_path "/opt/spotify"
+        if test -d "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
+            set spotify_path "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
+        end
+        
+        set -l prefs_path "$HOME/.config/spotify/prefs"
+
+        if not test -d $spotify_path
+            echo "Error: Spotify not found at $spotify_path. Is it installed?"
+            return 1
+        end
+
+        echo "Using Spotify path: $spotify_path"
+        spicetify config spotify_path $spotify_path
+        spicetify config prefs_path $prefs_path
+        
+        echo "Setting directory permissions..."
+        sudo chmod a+wr $spotify_path
+        sudo chmod a+wr -R "$spotify_path/Apps"
+        
+        # Handle mismatch errors by forcing a backup reset if -f is passed
+        if contains -- "-f" $argv
+            echo "Forcing backup reset..."
+            rm -rf ~/.config/spicetify/Backup
+        end
+
+        echo "Cleaning up previous backup state..."
+        spicetify restore backup 2>/dev/null
+        
+        echo "Applying Spicetify..."
+        spicetify backup apply
+    end
 
     # --- Privileged access ---
     # Logika "if UID != 0" versi Fish
