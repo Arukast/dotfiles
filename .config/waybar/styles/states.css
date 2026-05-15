@@ -20,7 +20,7 @@
 #pulseaudio.output.muted,
 #pulseaudio.input.source-muted,
 #wireplumber.muted {
-	color: @hover-fg;
+	color: alpha(@module-fg, 0.65);
 }
 
 #memory.warning,

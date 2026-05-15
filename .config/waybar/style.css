@@ -1,17 +1,18 @@
-@import "colors.css";
+@import "theme.css";
 @import "styles/fonts.css";
 
 * {
-  padding: 1px
+  padding: 0px;
+  margin: 0px;
 }
 
 window#waybar {
+  background: @bar-bg;
+  border: 1px solid @bar-border;
+  border-radius: 18px;
+  color: @main-fg;
   transition-property: background-color;
   transition-duration: 0.5s;
-  /* 56 52 46 */
-  /* color: #353436; */
-  background:rgba(186, 159, 119, 0);
-  border-radius: 35px;  
 }
 
 window#waybar.hidden {
@@ -25,9 +26,10 @@ window#waybar.hidden {
 .modules-left,
 .modules-center,
 .modules-right {
-    padding: 4px 4px;
+    padding: 2px 4px;
 }
 
+/* Base module styling - more subtle when inside a glass bar */
 #custom-distro,
 box#time,
 #workspaces,
@@ -38,29 +40,23 @@ box#utilities,
 #tray,
 box#systemInfo,
 #custom-cava {
-	  color: #ffffff;
-    border-radius: 35px;
-    margin: 0px 2px;
-    padding: 0px 10px;
-    transition: all 0.3s ease-in-out;
+    background: transparent;
+    border-radius: 12px;
+    margin: 0px 4px;
+    padding: 0px 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#battery,
-#temperature,
-#cpu,
-#memory,
-#custom-system_update,
-#custom-unsync,
-#systemd-failed-units,
-#privacy,
-#pulseaudio.input,
-#pulseaudio.output,
-#backlight,
-#bluetooth,
-#network,
-#custom-hyprshot,
-#custom-hyprpicker {
-  padding: 0px 4px 0px 4px;
+#custom-distro:hover,
+box#time:hover,
+#workspaces:hover,
+#custom-swaync:hover,
+box#connectivity:hover,
+box#utilities:hover,
+#mpris:hover,
+#tray:hover,
+box#systemInfo:hover {
+    background: @hover-bg;
 }
 
 /* --- IMPORTS --- */

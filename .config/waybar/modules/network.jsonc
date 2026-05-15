@@ -5,8 +5,8 @@
 		"interval": 10,
 		// "family":
 		"format": "󰤨",
-		"format-ethernet": "󰈀 Ethernet",
-		"format-wifi": "{icon} {essid}",
+		"format-ethernet": "󰈀",
+		"format-wifi": "{icon}",
 		// "format-linked":
 		"format-disconnected": "󰤯",
 		"format-disabled": "󰤮",

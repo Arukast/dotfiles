@@ -6,7 +6,7 @@
 		"format-disabled": "󰂲",
 		"format-off": "󰂲",
 		"format-on": "󰂰",
-		"format-connected": "󰂱 {device_alias}",
+		"format-connected": "󰂱",
 		// "format-connected-battery":
 		// "format-no-controller":
 		// "format-icons":

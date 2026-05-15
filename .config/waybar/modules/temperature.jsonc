@@ -6,7 +6,7 @@
 		// "input-filename":
 		// "warning-threshold":
 		"critical-threshold": 80,
-		"interval": 5,
+		"interval": 10,
 		// "format-warning":
 		"format-critical": "󰀦 {temperatureC}",
 		"format": "{icon} {temperatureC}",

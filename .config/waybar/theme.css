@@ -1,0 +1,23 @@
+@import "colors.css";
+
+/* 
+   Functional color mapping for Waybar 
+   Using Material Design 3 tokens from colors.css
+*/
+
+@define-color bar-bg alpha(@surface_container, 0.65);
+@define-color bar-border alpha(@outline, 0.2);
+@define-color main-fg @on_surface;
+
+@define-color module-bg alpha(@surface_container_high, 0.4);
+@define-color module-fg alpha(@on_surface, 0.95);
+
+@define-color accent @primary;
+@define-color accent-fg @on_primary;
+
+@define-color warning @tertiary;
+@define-color critical @error;
+@define-color charging @primary; /* Using primary for charging status */
+
+@define-color hover-bg alpha(@primary, 0.15);
+@define-color hover-fg @primary;

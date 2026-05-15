@@ -24,9 +24,6 @@
 		"~/.config/waybar/modules/group/wheel.jsonc",
 		"~/.config/waybar/modules/group/systemInfo.jsonc",
 		"~/.config/waybar/modules/custom/swaync.jsonc"
-		// Cava masih belum bener
-		// "~/.config/waybar/modules/custom/cava.jsonc"
-
 
 		// modules that are not included by default:
 		// "~/.config/waybar/modules/extras/keyboard_state.jsonc",
@@ -35,7 +32,6 @@
 		// "~/.config/waybar/modules/custom/power_menu.jsonc",
 		// "~/.config/waybar/modules/mpris.jsonc",
 		// "~/.config/waybar/modules/idle_inhibitor.jsonc", Simpen di Control Center
-		// "~/.config/waybar/modules/custom/system_update.jsonc", Simpen di control center
 		// "~/.config/waybar/modules/extras/taskbar.jsonc"
 		// "~/.config/waybar/modules/extras/wireplumber.jsonc"
 	],

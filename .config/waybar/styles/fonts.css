@@ -1,27 +1,30 @@
 window#waybar {
-	font-family: "JetBrainsMono Nerd Font, Commit Mono Nerd Font";
-	font-weight: bold;
+	font-family: "JetBrainsMono Nerd Font", "Commit Mono Nerd Font", "Inter", sans-serif;
+	font-weight: 600;
 	font-size: 14px;
-    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-    /* font-size: 100%; */
-    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-/* Pastikan label dan button mewarisi font dari window#waybar */
-window#waybar > box > button,
-window#waybar > box > label {
-    font-family: inherit;
+/* Ensure labels and buttons inherit font from window#waybar */
+window#waybar>box>button,
+window#waybar>box>label {
+	font-family: inherit;
 }
 
 #window label,
 #mpris,
-tooltip label {	
-	font-weight: normal;
+tooltip label {
+	font-weight: 500;
 }
 
-#workspaces button.active label,
-#workspaces button.focused label,
-#custom-trigger,
+#workspaces button label {
+	font-size: 16px;
+	font-weight: 800;
+}
+
 #custom-distro {
-	font-size: 20px;
-}	
+	font-size: 23px;
+}
+
+#custom-swaync {
+	font-size: 23px;
+}

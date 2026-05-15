@@ -1,6 +1,6 @@
 {
 	"cpu": {
-		"interval": 5,
+		"interval": 10,
 		"format": "󰍛 {usage}",
 		"format-warning": "󰀨 {usage}",
 		"format-critical": "󰀨 {usage}",

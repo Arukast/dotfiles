@@ -3,9 +3,8 @@
 -----------------*/
 
 #custom-distro {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
-    padding: 0px 32px 0px 28px;
+    color: @accent;
+    padding: 0px 22px 0px 16px;
 }
 
 /*----------
@@ -13,30 +12,53 @@
 ----------*/
 
 box#time {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @module-fg;
 }
-
 
 box#systemInfo {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @module-fg;
 }
 
-#systemd-failed-units.degraded {
-  color: #ff0000;
-  /* animation-name: blink; */
-  animation-duration: 1s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery,
+#temperature,
+#cpu,
+#memory,
+#custom-system_update,
+#custom-unsync {
+    padding: 0px 4px;
+    transition: all 0.3s ease;
+}
+
+#battery:hover,
+#temperature:hover,
+#cpu:hover,
+#memory:hover,
+#custom-system_update:hover {
+    color: @accent;
+}
+
+#custom-system_update.pending {
+    color: @warning;
+}
+
+#custom-unsync {
+    color: @warning;
+    font-weight: 800;
 }
 
 #privacy {
-  color: #ff0000;
-  /* animation-name: blink; */
-  animation-duration: 1s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+    color: @critical;
+    padding: 0px 4px;
+}
+
+#privacy-item {
+    padding: 0px 4px;
+}
+
+#systemd-failed-units.degraded {
+    color: @critical;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

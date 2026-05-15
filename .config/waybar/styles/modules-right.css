@@ -3,14 +3,14 @@
 -----------------*/
 
 #custom-swaync {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
-    padding: 0px 31px 0 29px;
+    color: @accent;
+    padding: 0px 18px 0px 16px;
+    font-size: 18px;
 }
 
 #mpris {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @module-fg;
+    padding: 0px 12px;
 }
 
 /*-----------------
@@ -18,26 +18,39 @@
 -----------------*/
 
 #tray {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @module-fg;
+    padding: 0px 14px;
 }
 
 box#utilities {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
-    padding: 0px 12px 0 10px;
+    color: @module-fg;
+    padding: 0px 2px;
 }
-/* box#wheel {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
-} */
+
 box#connectivity {
-	background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @module-fg;
+    padding: 0px 2px;
+}
+
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#custom-hyprpicker,
+#custom-hyprshot {
+    padding: 0px 6px;
+    transition: all 0.2s ease;
+}
+
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover {
+    color: @accent;
 }
 
 #custom-cava {
-    background: #DAC2A0;
-    color: alpha(@on_secondary_fixed, 0.85);
+    color: @accent;
     font-size: 16px;
+    padding: 0px 8px;
 }

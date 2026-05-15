@@ -4,8 +4,8 @@
 		"~/.config/waybar/modules/memory.jsonc",
 		"~/.config/waybar/modules/cpu.jsonc",
 		"~/.config/waybar/modules/battery.jsonc",
-		"~/.config/waybar/modules/custom/unsync.jsonc",
-		"~/.config/waybar/modules/custom/system_update.jsonc",
+        "~/.config/waybar/modules/custom/unsync.jsonc",
+        "~/.config/waybar/modules/custom/system_update.jsonc",
 		// "~/.config/waybar/modules/systemd.jsonc",
 		"~/.config/waybar/modules/privacy.jsonc"
     ],
@@ -16,7 +16,7 @@
 			"temperature",
             "cpu",
             "memory",
-			"custom/system_update",
+            "custom/system_update",
 			"custom/unsync",
 			// "systemd-failed-units",
 			"privacy"
