@@ -9,9 +9,9 @@ DESK_CONF="$CONF_DIR/custom/env_desk.conf"
 if grep -q "__GLX_VENDOR_LIBRARY_NAME,mesa" "$CURRENT_LINK"; then
     # Jika saat ini baterai, ubah ke desk
     cp "$DESK_CONF" "$CURRENT_LINK"
-    notify-send -u critical "GPU Mode" "Mode Desk (NVIDIA ON) aktif.\nSilakan Logout (Super+M) untuk menerapkan."
+    notify-send -u critical -r 9983 -h string:x-canonical-private-synchronous:gpu "GPU Mode" "Mode Desk (NVIDIA ON) aktif.\nSilakan Logout (Super+M) untuk menerapkan."
 else
     # Jika saat ini desk, ubah ke baterai
     cp "$BATTERY_CONF" "$CURRENT_LINK"
-    notify-send -u critical "GPU Mode" "Mode Baterai (NVIDIA OFF) aktif.\nSilakan Logout (Super+M) untuk menerapkan."
+    notify-send -u critical -r 9983 -h string:x-canonical-private-synchronous:gpu "GPU Mode" "Mode Baterai (NVIDIA OFF) aktif.\nSilakan Logout (Super+M) untuk menerapkan."
 fi

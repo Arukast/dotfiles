@@ -2,11 +2,8 @@
 
 handle() {
   case $1 in monitoradded*)
-    # Pindahkan workspace ke HDMI
-    for i in 5 6 7; do hyprctl dispatch moveworkspacetomonitor $i HDMI-A-1; done
-    
-    # Pindahkan workspace ke DP-2
-    for i in 8 9 10; do hyprctl dispatch moveworkspacetomonitor $i DP-2; done
+    # Pindahkan workspace ke monitor eksternal dalam satu batch command
+    hyprctl --batch "dispatch moveworkspacetomonitor 5 HDMI-A-1; dispatch moveworkspacetomonitor 6 HDMI-A-1; dispatch moveworkspacetomonitor 7 HDMI-A-1; dispatch moveworkspacetomonitor 8 DP-2; dispatch moveworkspacetomonitor 9 DP-2; dispatch moveworkspacetomonitor 10 DP-2"
 
     # Refresh Waybar
     killall waybar 2>/dev/null
