@@ -9,22 +9,19 @@
 		// "~/.config/waybar/modules/extras/*.jsonc"
 	],
 	*/
-
 	"include": [
 		// modules-left
 		"~/.config/waybar/modules/custom/distro.jsonc",
 		"~/.config/waybar/modules/group/time.jsonc",
+		"~/.config/waybar/modules/group/systemInfo.jsonc",
 		// modules-center
 		"~/.config/waybar/modules/hyprland/workspaces.jsonc",
-
 		// modules-right
 		"~/.config/waybar/modules/extras/tray.jsonc",
 		"~/.config/waybar/modules/group/utilities.jsonc",
 		"~/.config/waybar/modules/group/connectivity.jsonc",
-		"~/.config/waybar/modules/group/wheel.jsonc",
-		"~/.config/waybar/modules/group/systemInfo.jsonc",
+		// "~/.config/waybar/modules/group/wheel.jsonc",
 		"~/.config/waybar/modules/custom/swaync.jsonc"
-
 		// modules that are not included by default:
 		// "~/.config/waybar/modules/extras/keyboard_state.jsonc",
 		// "~/.config/waybar/modules/hyprland/window.jsonc",
@@ -35,11 +32,9 @@
 		// "~/.config/waybar/modules/extras/taskbar.jsonc"
 		// "~/.config/waybar/modules/extras/wireplumber.jsonc"
 	],
-
 	/*------------
 	    layout
 	------------*/
-
 	"modules-left": [
 		"custom/distro",
 		"group/time",
@@ -56,7 +51,6 @@
 		"group/connectivity",
 		"custom/swaync"
 	],
-
 	// "expand-center":
 	// "expand-left":
 	// "expand-right":

@@ -8,10 +8,10 @@
     font-size: 18px;
 }
 
-#mpris {
+/* #mpris {
     color: @module-fg;
     padding: 0px 12px;
-}
+} */
 
 /*-----------------
 	tray
@@ -19,17 +19,15 @@
 
 #tray {
     color: @module-fg;
-    padding: 0px 14px;
 }
 
 box#utilities {
     color: @module-fg;
-    padding: 0px 2px;
+    /* padding: 0px 2px; */
 }
 
 box#connectivity {
     color: @module-fg;
-    padding: 0px 2px;
 }
 
 #network,

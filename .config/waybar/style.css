@@ -26,7 +26,7 @@ window#waybar.hidden {
 .modules-left,
 .modules-center,
 .modules-right {
-    padding: 2px 4px;
+  padding: 2px 4px;
 }
 
 /* Base module styling - more subtle when inside a glass bar */
@@ -40,11 +40,11 @@ box#utilities,
 #tray,
 box#systemInfo,
 #custom-cava {
-    background: transparent;
-    border-radius: 12px;
-    margin: 0px 4px;
-    padding: 0px 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border-radius: 12px;
+  margin: 0px 4px;
+  padding: 0px 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #custom-distro:hover,
@@ -56,7 +56,7 @@ box#utilities:hover,
 #mpris:hover,
 #tray:hover,
 box#systemInfo:hover {
-    background: @hover-bg;
+  background: @hover-bg;
 }
 
 /* --- IMPORTS --- */
