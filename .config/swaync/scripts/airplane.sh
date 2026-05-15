@@ -1,25 +1,30 @@
 #!/bin/bash
 
-# Cek apakah ada perangkat yang NYALA (Soft blocked: no)
-# Jika ada yang "no", berarti Airplane Mode = OFF (False)
-# Jika semua "yes", berarti Airplane Mode = ON (True)
-IS_AIRPLANE_OFF=$(rfkill list | grep "Soft blocked: no")
+# Fast and robust airplane mode check using rfkill JSON output
+# Returns "true" if ALL devices are soft-blocked (Airplane Mode ON)
+# Returns "false" if ANY device is unblocked (Airplane Mode OFF)
+
+get_status() {
+    if rfkill --json | jq -e '.rfkilldevices[].soft == "unblocked"' > /dev/null; then
+        echo "false"
+    else
+        echo "true"
+    fi
+}
 
 case "$1" in
     "toggle")
-        if [ -n "$IS_AIRPLANE_OFF" ]; then
-            # Ada perangkat nyala -> Matikan semua (Mode Pesawat ON)
+        if [ "$(get_status)" == "false" ]; then
+            # Airplane Mode OFF -> Turn it ON
             rfkill block all
+            notify-send -u low -r 9982 -h string:x-canonical-private-synchronous:airplane "Airplane Mode: ON" "All wireless devices disabled" -i "airplane-mode-on"
         else
-            # Semua mati -> Nyalakan semua (Mode Pesawat OFF)
+            # Airplane Mode ON -> Turn it OFF
             rfkill unblock all
+            notify-send -u low -r 9982 -h string:x-canonical-private-synchronous:airplane "Airplane Mode: OFF" "Wireless devices enabled" -i "airplane-mode-off"
         fi
         ;;
     "status")
-        if [ -n "$IS_AIRPLANE_OFF" ]; then
-            echo "false" # Tombol Mati (Wifi Nyala)
-        else
-            echo "true"  # Tombol Nyala (Wifi Mati/Blocked)
-        fi
+        get_status
         ;;
 esac

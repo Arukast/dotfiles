@@ -57,7 +57,7 @@ main() {
 			level=$(brightnessctl -m | awk -F ',' '{print $4}')
 
 			notify-send "Brightness: $level" -h int:value:"$level" -i \
-				"contrast" -h string:x-canonical-private-synchronous:backlight
+				"contrast" -r 9985 -h string:x-canonical-private-synchronous:backlight
 			;;
 		*)
 			usage

@@ -93,7 +93,7 @@ set_state() {
 	state=$(get_state)
 	icon=$(get_icon)
 
-	notify-send "$DEV_NAME: $state" -i "$icon" \
+	notify-send "$DEV_NAME: $state" -i "$icon" -r 9984 \
 		-h string:x-canonical-private-synchronous:volume
 }
 
@@ -123,7 +123,7 @@ set_volume() {
 	local icon
 	icon=$(get_icon $new_level)
 
-	notify-send "$DEV_NAME: $new_level%" -h int:value:$new_level -i "$icon" \
+	notify-send "$DEV_NAME: $new_level%" -h int:value:$new_level -i "$icon" -r 9984 \
 		-h string:x-canonical-private-synchronous:volume
 }
 

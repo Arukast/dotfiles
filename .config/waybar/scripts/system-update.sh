@@ -40,8 +40,12 @@ get_helper() {
 }
 
 check_updates() {
-	local pac_output pac_status
+	# Check for internet connectivity first
+	if ! ping -c 1 -W 1 8.8.8.8 &> /dev/null; then
+		return 0
+	fi
 
+	local pac_output pac_status
 	pac_output=$(timeout $TIMEOUT checkupdates)
 	pac_status=$?
 
@@ -52,33 +56,29 @@ check_updates() {
 
 	PAC_UPD=$(grep -c . <<< "$pac_output")
 
-	if [[ -z $HELPER ]]; then
-		return 0
+	if [[ -n $HELPER ]]; then
+		local aur_output aur_status
+		aur_output=$(timeout $TIMEOUT "$HELPER" -Quaq)
+		aur_status=$?
+
+		if ((${#aur_output} > 0 && aur_status != 0)); then
+			FAILURE=true
+			return 1
+		fi
+		AUR_UPD=$(grep -c . <<< "$aur_output")
 	fi
 
-	local aur_output aur_status
+	if command -v flatpak &> /dev/null; then
+		local flat_output flat_status
+		flat_output=$(timeout $TIMEOUT flatpak remote-ls --updates 2>/dev/null)
+		flat_status=$?
 
-	aur_output=$(timeout $TIMEOUT "$HELPER" -Quaq)
-	aur_status=$?
-
-	if ((${#aur_output} > 0 && aur_status != 0)); then
-		FAILURE=true
-		return 1
+		if ((${#flat_output} > 0 && flat_status != 0)); then
+			FAILURE=true
+			return 1
+		fi
+		FLAT_UPD=$(grep -c . <<< "$flat_output")
 	fi
-
-	AUR_UPD=$(grep -c . <<< "$aur_output")
-
-	local flat_output flat_status
-
-	flat_output=$(timeout $TIMEOUT flatpak remote-ls --updates 2>/dev/null)
-	flat_status=$?
-
-	if ((${#flat_output} > 0 && flat_status != 0)); then
-		FAILURE=true
-		return 1
-	fi
-
-	FLAT_UPD=$(grep -c . <<< "$flat_output")
 }
 
 update_packages() {
@@ -95,7 +95,7 @@ update_packages() {
 		flatpak update
 	fi
 
-	notify-send "Update Complete" -i "package-install"
+	notify-send "Update Complete" -i "package-install" -r 9986 -h string:x-canonical-private-synchronous:update
 
 	printf "\n%bUpdate Complete!%b\n" "$FG_GREEN" "$FG_RESET"
 	read -rsn 1 -p "Press any key to exit..."
@@ -103,10 +103,11 @@ update_packages() {
 
 display_module() {
 	if $FAILURE; then
-		command printf "{ \"text\": \"󰒑\", \"tooltip\": \"Cannot fetch updates. Right-click to retry.\" }\n"
+		command printf "{ \"text\": \"󰒑\", \"tooltip\": \"Cannot fetch updates. Right-click to retry.\", \"class\": \"error\" }\n"
 		exit 0
 	fi
 
+	local total=$((PAC_UPD + AUR_UPD + FLAT_UPD))
 	local tooltip="<b>Official</b>: $PAC_UPD"
 
 	if [[ -n $HELPER ]]; then
@@ -117,11 +118,12 @@ display_module() {
 		tooltip+="\n<b>Flatpak</b>: $FLAT_UPD"
 	fi
 
-	if ((PAC_UPD + AUR_UPD + FLAT_UPD == 0)); then
-		# command printf "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }\n"
+	if ((total == 0)); then
+		# Use a subtle icon when no updates are available, or stay hidden
+		# command printf "{ \"text\": \"󰄠\", \"tooltip\": \"System is up to date\", \"class\": \"uptodate\" }\n"
 		exit 1
 	else
-		command printf "{ \"text\": \"󰄠\", \"tooltip\": \"%s\" }\n" "$tooltip"
+		command printf "{ \"text\": \"󰄠\", \"tooltip\": \"%s\", \"class\": \"pending\" }\n" "$tooltip"
 	fi
 }
 
