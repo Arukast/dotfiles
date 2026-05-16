@@ -95,6 +95,11 @@ update_packages() {
 		flatpak update
 	fi
 
+	if command -v hyprpm &> /dev/null; then
+		printf "\n%bUpdating Hyprland plugins...%b\n" "$FG_BLUE" "$FG_RESET"
+		hyprpm update && hyprpm reload
+	fi
+
 	notify-send "Update Complete" -i "package-install" -r 9986 -h string:x-canonical-private-synchronous:update
 
 	printf "\n%bUpdate Complete!%b\n" "$FG_GREEN" "$FG_RESET"

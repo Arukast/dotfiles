@@ -92,7 +92,40 @@ if status is-interactive # Commands to run in interactive sessions can go here
         alias root 'sudo -i'
         alias reboot 'sudo systemctl reboot'
         alias poweroff 'sudo systemctl poweroff'
-        alias update 'printf "\nUpdating pacman packages...\n" && sudo pacman -Syu && printf "\nUpdating AUR packages...\n" && yay -Syu && printf "\nUpdating Flatpak packages...\n" && flatpak update'
+    # --- Update Function ---
+    function update
+        set -l blue (set_color -o blue)
+        set -l green (set_color -o green)
+        set -l normal (set_color normal)
+
+        echo -e "\n$blue── Updating pacman packages ──$normal"
+        sudo pacman -Syu
+
+        if command -v yay > /dev/null
+            echo -e "\n$blue── Updating AUR packages (yay) ──$normal"
+            yay -Syu
+        else if command -v paru > /dev/null
+            echo -e "\n$blue── Updating AUR packages (paru) ──$normal"
+            paru -Syu
+        end
+
+        if command -v flatpak > /dev/null
+            echo -e "\n$blue── Updating Flatpak packages ──$normal"
+            flatpak update
+        end
+
+        if command -v hyprpm > /dev/null
+            echo -e "\n$blue── Updating Hyprland plugins ──$normal"
+            hyprpm update && hyprpm reload
+        end
+
+        # Update Waybar module if running
+        if pgrep waybar > /dev/null
+            pkill -RTMIN+1 waybar
+        end
+
+        echo -e "\n$green── System Update Complete ──$normal\n"
+    end
         alias netctl 'sudo netctl'
         
         # Catatan: Trik "alias sudo='sudo '" ala Bash tidak jalan di Fish.
