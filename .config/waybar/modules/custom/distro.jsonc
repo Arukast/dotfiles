@@ -17,7 +17,7 @@
 		// "justify":
 		"on-click": "${HOME}/.config/rofi/launchers/launcher.sh",
 		// "on-click-middle": Dipake buat nampilin List Kebinds
-		// "on-click-right": "~/.config/waybar/scripts/ai_launcher.sh",
+		"on-click-right": "${HOME}/.config/hypr/scripts/keybinds_hint.sh",
 		// "on-update":
 		// "on-scroll-up":
 		// "on-scroll-down":
