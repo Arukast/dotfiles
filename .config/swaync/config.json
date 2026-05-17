@@ -98,21 +98,21 @@
           "type": "toggle",
           "command": "~/.config/swaync/scripts/caffeine.sh toggle",
           "update-command": "~/.config/swaync/scripts/caffeine.sh status",
-          "interval": 2
+          "interval": 15
         },
         {
           "label": "",
           "type": "toggle",
           "command": "pamixer -t",
           "update-command": "pamixer --get-mute",
-          "interval": 1
+          "interval": 5
         },
         {
           "label": "",
           "type": "toggle",
           "command": "pamixer --default-source -t",
           "update-command": "pamixer --default-source --get-mute",
-          "interval": 1
+          "interval": 5
         },
         {
           "label": "",
