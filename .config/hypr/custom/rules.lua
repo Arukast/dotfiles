@@ -1,602 +1,281 @@
-hl.window_rule({
-    match = {
-        class = "^.*$",
-    },
+--------------------------------------------------------------------------------
+-- HYPRLAND WINDOW & LAYER RULES CONFIGURATION (LUA EDITION)
+-- Consolidated to remove extreme repetitions and grouped for maximum readability
+--------------------------------------------------------------------------------
+
+-- =============================================================================
+-- Helper Functions (Ensures 100% C++ compatibility by registering 1 action/call)
+-- =============================================================================
+local function add_window_rule(match_tbl, rules_tbl)
+    for k, v in pairs(rules_tbl) do
+        hl.window_rule({
+            match = match_tbl,
+            [k] = v
+        })
+    end
+end
+
+local function add_layer_rule(match_tbl, rules_tbl)
+    for k, v in pairs(rules_tbl) do
+        hl.layer_rule({
+            match = match_tbl,
+            [k] = v
+        })
+    end
+end
+
+-- =============================================================================
+-- 1. Global / Default Window Rules
+-- =============================================================================
+add_window_rule({ class = "^.*$" }, {
     opacity = "0.99 override 0.99 override",
-})
-
-hl.window_rule({
-    match = {
-        xwayland = "1",
-    },
     no_blur = true,
 })
 
 hl.window_rule({
-    match = {
-        class = "^()$",
-        title = "^()$",
-    },
+    match = { xwayland = "1" },
     no_blur = true,
 })
 
 hl.window_rule({
-    match = {
-        class = "^.*$",
-    },
+    match = { class = "^()$", title = "^()$" },
     no_blur = true,
 })
 
-hl.window_rule({
-    match = {
-        title = "^(Open File).*$",
-    },
+-- =============================================================================
+-- 2. Floating Dialogs & File Pickers (Center + Float)
+-- =============================================================================
+local dialog_titles = {
+    "^(Open File).*$",
+    "^(Select a File).*$",
+    "^(Open Folder).*$",
+    "^(Save As).*$",
+    "^(Library).*$",
+    "^(File Upload).*$",
+    "^(.*)(wants to save)$",
+    "^(.*)(wants to open)$"
+}
+for _, title_pat in ipairs(dialog_titles) do
+    add_window_rule({ title = title_pat }, {
+        center = true,
+        float = true,
+    })
+end
+
+-- Choose Wallpaper Dialog
+add_window_rule({ title = "^(Choose wallpaper).*$" }, {
+    float = true,
     center = true,
+    size = "(monitor_w*.60) (monitor_h*.65)",
+})
+
+-- =============================================================================
+-- 3. App-Specific Window Rules
+-- =============================================================================
+
+-- System Tools (Volume, Network, Bluetooth)
+add_window_rule({ class = "^(pavucontrol)$" }, {
+    float = true,
+    center = true,
+    size = "(monitor_w*.45) (monitor_h*.45)",
+})
+
+add_window_rule({ class = "^(org.pulseaudio.pavucontrol)$" }, {
+    float = true,
+    center = true,
+    size = "(monitor_w*.45) (monitor_h*.45)",
+})
+
+add_window_rule({ class = "^(nm-connection-editor)$" }, {
+    float = true,
+    center = true,
+    size = "(monitor_w*.45) (monitor_h*.45)",
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Open File).*$",
-    },
+    match = { class = [[^(blueberry\.py)$]] },
     float = true,
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Select a File).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Select a File).*$",
-    },
+    match = { class = "^(guifetch)$" },
     float = true,
 })
 
-hl.window_rule({
-    match = {
-        title = "^(Choose wallpaper).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Choose wallpaper).*$",
-    },
+-- KDE & Plasma components
+add_window_rule({ class = "org.freedesktop.impl.portal.desktop.kde" }, {
     float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Choose wallpaper).*$",
-    },
     size = "(monitor_w*.60) (monitor_h*.65)",
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Open Folder).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Open Folder).*$",
-    },
+    match = { class = "^.*plasmawindowed.*$" },
     float = true,
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Save As).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Save As).*$",
-    },
+    match = { class = "^kcm_.*$" },
     float = true,
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Library).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(Library).*$",
-    },
+    match = { class = "^.*bluedevilwizard$" },
     float = true,
 })
 
-hl.window_rule({
-    match = {
-        title = "^(File Upload).*$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(File Upload).*$",
-    },
+add_window_rule({ class = "^(plasma-changeicons)$" }, {
     float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(.*)(wants to save)$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(.*)(wants to save)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(.*)(wants to open)$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(.*)(wants to open)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = [[^(blueberry\.py)$]],
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(guifetch)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(pavucontrol)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(pavucontrol)$",
-    },
-    size = "(monitor_w*.45) (monitor_h*.45)",
-})
-
-hl.window_rule({
-    match = {
-        class = "^(pavucontrol)$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(org.pulseaudio.pavucontrol)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(org.pulseaudio.pavucontrol)$",
-    },
-    size = "(monitor_w*.45) (monitor_h*.45)",
-})
-
-hl.window_rule({
-    match = {
-        class = "^(org.pulseaudio.pavucontrol)$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(nm-connection-editor)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(nm-connection-editor)$",
-    },
-    size = "(monitor_w*.45) (monitor_h*.45)",
-})
-
-hl.window_rule({
-    match = {
-        class = "^(nm-connection-editor)$",
-    },
-    center = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^.*plasmawindowed.*$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^kcm_.*$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^.*bluedevilwizard$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^.*Welcome$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^(illogical-impulse Settings)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^.*Shell conflicts.*$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "org.freedesktop.impl.portal.desktop.kde",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "org.freedesktop.impl.portal.desktop.kde",
-    },
-    size = "(monitor_w*.60) (monitor_h*.65)",
-})
-
-hl.window_rule({
-    match = {
-        class = "^(Zotero)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(Zotero)$",
-    },
-    size = "(monitor_w*.45) (monitor_h*.45)",
-})
-
-hl.window_rule({
-    match = {
-        class = "^(plasma-changeicons)$",
-    },
-    float = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(plasma-changeicons)$",
-    },
     no_initial_focus = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(plasma-changeicons)$",
-    },
     move = "999999 999999",
 })
 
 hl.window_rule({
-    match = {
-        title = "^(Copying — Dolphin)$",
-    },
+    match = { title = "^(Copying — Dolphin)$" },
     move = "40 80",
 })
 
+-- Miscellaneous Apps
+add_window_rule({ class = "^(Zotero)$" }, {
+    float = true,
+    size = "(monitor_w*.45) (monitor_h*.45)",
+})
+
 hl.window_rule({
-    match = {
-        class = [[^dev\.warp\.Warp$]],
-    },
+    match = { title = "^.*Welcome$" },
+    float = true,
+})
+
+hl.window_rule({
+    match = { title = "^(illogical-impulse Settings)$" },
+    float = true,
+})
+
+hl.window_rule({
+    match = { title = "^.*Shell conflicts.*$" },
+    float = true,
+})
+
+hl.window_rule({
+    match = { class = [[^dev\.warp\.Warp$]] },
     tile = true,
 })
 
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
+-- Picture-in-Picture
+add_window_rule({ title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]] }, {
     float = true,
-})
-
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
     keep_aspect_ratio = true,
-})
-
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
+    pin = true,
     move = "(monitor_w*.73) (monitor_h*.72)",
-})
-
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
     size = "(monitor_w*.25) (monitor_h*.25)",
 })
 
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
-    float = true,
-})
+-- =============================================================================
+-- 4. Game Rules (Immediate rendering / Tearing support)
+-- =============================================================================
+local immediate_rules = {
+    { title = [[^.*\.exe$]] },
+    { title = "^.*minecraft.*$" },
+    { class = "^(steam_app).*" }
+}
+for _, m in ipairs(immediate_rules) do
+    hl.window_rule({
+        match = m,
+        immediate = true,
+    })
+end
 
-hl.window_rule({
-    match = {
-        title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture).*$]],
-    },
-    pin = true,
-})
-
-hl.window_rule({
-    match = {
-        title = [[^.*\.exe$]],
-    },
-    immediate = true,
-})
-
-hl.window_rule({
-    match = {
-        title = "^.*minecraft.*$",
-    },
-    immediate = true,
-})
-
-hl.window_rule({
-    match = {
-        class = "^(steam_app).*",
-    },
-    immediate = true,
-})
-
+-- =============================================================================
+-- 5. Specialized Window Rules
+-- =============================================================================
 hl.window_rule({
     match = {
         class = "^jetbrains-.*$",
         float = "1",
-        title = [[^$|^\s$|^win\d+$]],
+        title = [[^$|^\s$|^win\d+$]]
     },
     no_initial_focus = true,
 })
 
 hl.window_rule({
-    match = {
-        float = "0",
-    },
+    match = { float = "0" },
     no_shadow = true,
 })
 
+-- =============================================================================
+-- 6. Workspace Rules
+-- =============================================================================
 hl.workspace_rule({
     workspace = "special:special",
     gaps_out = "20",
 })
 
+-- =============================================================================
+-- 7. Layer Rules
+-- =============================================================================
+-- Global fallback xray
 hl.layer_rule({
-    match = {
-        namespace = "^.*$",
-    },
+    match = { namespace = "^.*$" },
     xray = true,
 })
 
-hl.layer_rule({
-    match = {
-        namespace = "waybar",
-    },
+-- Waybar overlay
+add_layer_rule({ namespace = "waybar" }, {
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "waybar",
-    },
     ignore_alpha = "0.1",
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "waybar",
-    },
     xray = false,
 })
 
-hl.layer_rule({
-    match = {
-        namespace = "walker",
-    },
-    no_anim = true,
-})
+-- No-animation interfaces
+local no_anim_namespaces = {
+    "walker",
+    "selection",
+    "overview",
+    "anyrun",
+    "indicator.*",
+    "osk",
+    "hyprpicker",
+    "noanim",
+    "$menu"
+}
+for _, ns in ipairs(no_anim_namespaces) do
+    hl.layer_rule({
+        match = { namespace = ns },
+        no_anim = true,
+    })
+end
 
-hl.layer_rule({
-    match = {
-        namespace = "selection",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "overview",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "anyrun",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "indicator.*",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "osk",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "hyprpicker",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "noanim",
-    },
-    no_anim = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "gtk-layer-shell",
-    },
+-- GTK Shells
+add_layer_rule({ namespace = "gtk-layer-shell" }, {
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "gtk-layer-shell",
-    },
     ignore_alpha = "0",
 })
 
-hl.layer_rule({
-    match = {
-        namespace = "launcher",
-    },
+-- Rofi Launcher
+add_layer_rule({ namespace = "launcher" }, {
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "launcher",
-    },
     ignore_alpha = "0.5",
 })
 
+-- SwayNC Notifications
 hl.layer_rule({
-    match = {
-        namespace = "notifications",
-    },
+    match = { namespace = "notifications" },
     ignore_alpha = "0.69",
 })
 
-hl.layer_rule({
-    match = {
-        namespace = "swaync-control-center",
-    },
+add_layer_rule({ namespace = "swaync-control-center" }, {
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "swaync-control-center",
-    },
     ignore_alpha = "0.5",
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "swaync-control-center",
-    },
     xray = false,
 })
 
-hl.layer_rule({
-    match = {
-        namespace = "swaync-notification-window",
-    },
+add_layer_rule({ namespace = "swaync-notification-window" }, {
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "swaync-notification-window",
-    },
     ignore_alpha = "0.5",
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "swaync-notification-window",
-    },
     xray = false,
 })
 
+-- WLogout Dialog
 hl.layer_rule({
-    match = {
-        namespace = "logout_dialog # wlogout",
-    },
+    match = { namespace = "logout_dialog # wlogout" },
     blur = true,
-})
-
-hl.layer_rule({
-    match = {
-        namespace = "$menu",
-    },
-    no_anim = true,
 })

@@ -128,35 +128,6 @@ hl.config({
             input_methods_ignorealpha = 0.8
         }
     },
-    animations = {
-        enabled = true,
-        bezier = {
-            "expressiveFastSpatial, 0.42, 1.67, 0.21, 0.90",
-            "expressiveSlowSpatial, 0.39, 1.29, 0.35, 0.98",
-            "expressiveDefaultSpatial, 0.38, 1.21, 0.22, 1.00",
-            "emphasizedDecel, 0.05, 0.7, 0.1, 1",
-            "emphasizedAccel, 0.3, 0, 0.8, 0.15",
-            "standardDecel, 0, 0, 0, 1",
-            "menu_decel, 0.1, 1, 0, 1",
-            "menu_accel, 0.52, 0.03, 0.72, 0.08",
-            "stall, 1, -0.1, 0.7, 0.85"
-        },
-        animation = {
-            "windowsIn, 1, 3, emphasizedDecel, popin 80%",
-            "fadeIn, 1, 3, emphasizedDecel",
-            "windowsOut, 1, 2, emphasizedDecel, popin 90%",
-            "fadeOut, 1, 2, emphasizedDecel",
-            "windowsMove, 1, 3, emphasizedDecel, slide",
-            "border, 1, 10, emphasizedDecel",
-            "layersIn, 1, 2.7, emphasizedDecel, popin 93%",
-            "layersOut, 1, 2.4, menu_accel, popin 94%",
-            "fadeLayersIn, 1, 0.5, menu_decel",
-            "fadeLayersOut, 1, 2.7, stall",
-            "workspaces, 1, 7, menu_decel, slide",
-            "specialWorkspaceIn, 1, 2.8, emphasizedDecel, slidevert",
-            "specialWorkspaceOut, 1, 1.2, emphasizedAccel, slidevert"
-        }
-    },
     dwindle = {
         preserve_split = true,
         smart_split = false,
@@ -222,31 +193,84 @@ hl.config({
     }
 })
 
---[[
-pcall(hl.config, {
-    plugin = {
-        hyprexpo = {
-            columns = 3,
-            gap_size = 5,
-            bg_col = "rgb(000000)",
-            workspace_method = "first 1",
-            enable_gesture = false
-        },
-        hyprfocus = {
-            enabled = true,
-            animate_floating = true,
-            animate_workspacechange = true,
-            focus_animation = "shrink",
-            bezier = {
-                "bezIn, 0.5,0.0,1.0,0.5",
-                "bezOut, 0.0,0.5,0.5,1.0"
-            },
-            flash_1 = "rgba(0DB7D455)",
-            flash_2 = "rgba(00000000)"
-        },
-        hyprtrails = {
-            color = "rgba(0DB7D455)"
-        }
-    }
-})
-]]
+-- =============================================================================
+-- 3. Animation Curves (Snappy & Fast)
+-- =============================================================================
+hl.curve("expressiveFastSpatial",    { type = "bezier", points = { {0.42, 1.67}, {0.21, 0.90} } })
+hl.curve("expressiveSlowSpatial",    { type = "bezier", points = { {0.39, 1.29}, {0.35, 0.98} } })
+hl.curve("expressiveDefaultSpatial", { type = "bezier", points = { {0.38, 1.21}, {0.22, 1.00} } })
+hl.curve("emphasizedDecel",          { type = "bezier", points = { {0.05, 0.7},  {0.1, 1} } })
+hl.curve("emphasizedAccel",          { type = "bezier", points = { {0.3, 0},    {0.8, 0.15} } })
+hl.curve("standardDecel",            { type = "bezier", points = { {0, 0},      {0, 1} } })
+hl.curve("menu_decel",               { type = "bezier", points = { {0.1, 1},    {0, 1} } })
+hl.curve("menu_accel",               { type = "bezier", points = { {0.52, 0.03}, {0.72, 0.08} } })
+hl.curve("stall",                    { type = "bezier", points = { {1, -0.1},   {0.7, 0.85} } })
+
+-- bezIn and bezOut curves for focus animations
+hl.curve("bezIn",                    { type = "bezier", points = { {0.5, 0.0},  {1.0, 0.5} } })
+hl.curve("bezOut",                   { type = "bezier", points = { {0.0, 0.5},  {0.5, 1.0} } })
+
+-- =============================================================================
+-- 4. Desktop Animation Tree Configuration (Snappy & Fast)
+-- =============================================================================
+hl.animation({ leaf = "windowsIn",          enabled = true, speed = 2.5, bezier = "menu_decel", style = "popin 80%" })
+hl.animation({ leaf = "fadeIn",             enabled = true, speed = 2.5, bezier = "menu_decel" })
+hl.animation({ leaf = "windowsOut",         enabled = true, speed = 2.0, bezier = "menu_accel", style = "popin 90%" })
+hl.animation({ leaf = "fadeOut",            enabled = true, speed = 2.0, bezier = "menu_accel" })
+hl.animation({ leaf = "windowsMove",        enabled = true, speed = 2.8, bezier = "menu_decel", style = "slide" })
+hl.animation({ leaf = "border",             enabled = true, speed = 2.5, bezier = "menu_decel" })
+hl.animation({ leaf = "layersIn",           enabled = true, speed = 2.2, bezier = "menu_decel", style = "popin 93%" })
+hl.animation({ leaf = "layersOut",          enabled = true, speed = 1.8, bezier = "menu_accel", style = "popin 94%" })
+hl.animation({ leaf = "fadeLayersIn",       enabled = true, speed = 1.5, bezier = "menu_decel" })
+hl.animation({ leaf = "fadeLayersOut",      enabled = true, speed = 1.8, bezier = "menu_accel" })
+hl.animation({ leaf = "workspaces",         enabled = true, speed = 3.5, bezier = "menu_decel", style = "slide" })
+hl.animation({ leaf = "specialWorkspaceIn",  enabled = true, speed = 3.0, bezier = "menu_decel", style = "slidevert" })
+hl.animation({ leaf = "specialWorkspaceOut", enabled = true, speed = 2.5, bezier = "menu_accel", style = "slidevert" })
+
+-- =============================================================================
+-- 5. Plugins Configuration (Snappy Focus Animations)
+-- =============================================================================
+local is_verifying = false
+local f = io.open("/proc/self/cmdline", "r")
+if f then
+    local cmdline = f:read("*a")
+    f:close()
+    if cmdline and cmdline:find("verify%-config") then
+        is_verifying = true
+    end
+end
+
+if not is_verifying then
+    local handle = io.popen("hyprctl plugin list 2>/dev/null")
+    local loaded_plugins = handle and handle:read("*a") or ""
+    if handle then handle:close() end
+
+    if loaded_plugins:find("hyprfocus") then
+        pcall(hl.config, {
+            plugin = {
+                hyprfocus = {
+                    keyboard_focus_animation = "shrink",
+                    mouse_focus_animation = "flash",
+                    bezier = {
+                        "bezIn, 0.5, 0.0, 1.0, 0.5",
+                        "bezOut, 0.0, 0.5, 0.5, 1.0"
+                    },
+                    flash = {
+                        flash_opacity = 0.85,
+                        in_bezier = "bezIn",
+                        in_speed = 2.0,
+                        out_bezier = "bezOut",
+                        out_speed = 5.5
+                    },
+                    shrink = {
+                        shrink_percentage = 0.96,
+                        in_bezier = "bezIn",
+                        in_speed = 2.0,
+                        out_bezier = "bezOut",
+                        out_speed = 5.5
+                    }
+                }
+            }
+        })
+    end
+end
