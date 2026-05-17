@@ -3,7 +3,7 @@
         "format": "",
 		"min-length": 2,
         "return-type": "json",
-        "interval": 700,
+        "interval": 1800,
         "exec": "~/.config/waybar/scripts/unsync.sh",
         "exec-if": "~/.config/waybar/scripts/unsync.sh"
     }
