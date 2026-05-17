@@ -1,0 +1,5 @@
+require("custom.env")
+require("custom.general")
+require("custom.execs")
+require("custom.rules")
+require("custom.keybinds")

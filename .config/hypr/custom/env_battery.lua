@@ -1,0 +1,5 @@
+hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "mesa")
+hl.env("VK_DRIVER_FILES", "/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json")
+hl.env("LIBVA_DRIVER_NAME", "radeonsi")
+hl.env("AQ_DRM_DEVICES", "/dev/dri/amd-igpu")

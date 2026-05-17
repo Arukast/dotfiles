@@ -1,0 +1,12 @@
+require("custom.env_current")
+
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("CLUTTER_BACKEND", "wayland")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+hl.env("XDG_MENU_PREFIX", "arch-")
+hl.env("TERMINAL", "kitty -1")
+hl.env("HYPRSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots/")
