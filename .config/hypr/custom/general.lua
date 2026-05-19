@@ -165,10 +165,15 @@ hl.config({
         numlock_by_default = true,
         repeat_delay = 250,
         repeat_rate = 35,
+
         follow_mouse = 1,
         off_window_axis_events = 2,
+
         accel_profile = "flat",
-        force_no_accel = true,
+
+        sensitivity = 0.8, -- Adjust from -1.0 to 1.0. Lower/negative values make the cursor slower.
+
+
         touchpad = {
             natural_scroll = true,
             disable_while_typing = true,
