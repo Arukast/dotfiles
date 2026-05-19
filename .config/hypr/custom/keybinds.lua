@@ -10,9 +10,6 @@ local browser    = "firefox"
 local fileFolder = "dolphin"
 local codeEditor = "code"
 
--- State tracking for per-window fake fullscreen
-local fake_fullscreen_windows = {}
-
 -- ==========================================
 -- 2. Application Launchers
 -- ==========================================
@@ -31,23 +28,11 @@ hl.bind("SUPER + Slash",  hl.dsp.exec_cmd([[~/.config/hypr/scripts/keybinds_hint
 hl.bind("SUPER + Q",            hl.dsp.window.close())
 hl.bind("ALT + F4",             hl.dsp.window.close())
 hl.bind("SUPER+SHIFT+ALT + Q",  hl.dsp.exec_cmd([[hyprctl kill]]))
-hl.bind("SUPER+ALT + Space",    hl.dsp.window.float({ action = "toggle" }))
-hl.bind("SUPER + G",            hl.dsp.window.fullscreen(1))
-hl.bind("SUPER + F",            hl.dsp.window.fullscreen(0))
-hl.bind("SUPER+ALT + F",        function()
-    local w = hl.get_active_window()
-    if w ~= nil then
-        local addr = w.address
-        if not fake_fullscreen_windows[addr] then
-            hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 3 }))
-            fake_fullscreen_windows[addr] = true
-        else
-            hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 0 }))
-            fake_fullscreen_windows[addr] = nil
-        end
-    end
-end)
-hl.bind("SUPER + O",            hl.dsp.window.pin())
+hl.bind("SUPER+ALT + Space",    hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
+hl.bind("SUPER + D",            hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Window: Maximize" })
+hl.bind("SUPER + F",            hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Window: Fullscreen" })
+hl.bind("SUPER+ALT + F",        hl.dsp.window.fullscreen_state({ internal = 0, client = 3, action = "toggle" }), { description = "Window: Fullscreen spoof" })
+hl.bind("SUPER + O",            hl.dsp.window.pin(), { description = "Window: Pin" })
 hl.bind("SUPER + J",            hl.dsp.layout("togglesplit"))
 
 -- ==========================================
