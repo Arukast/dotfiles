@@ -20,4 +20,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 4; sh -c 'grep -q 1 /sys/class/power_supply/AC*/online && steam -silent &> /dev/null &'")
     -- Also start notification daemon
     hl.exec_cmd("swaync")
+    -- Automate toggle of NVIDIA monitor to fix blank screen on boot
+    hl.exec_cmd("/home/arukast/.config/hypr/scripts/fix_nvidia_monitor.sh &")
 end)

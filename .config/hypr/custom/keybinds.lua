@@ -109,6 +109,7 @@ hl.bind("SUPER+SHIFT + L",               hl.dsp.exec_cmd("systemctl suspend || l
 hl.bind("CTRL+SHIFT+ALT+SUPER + Delete", hl.dsp.exec_cmd("systemctl poweroff || loginctl poweroff"))
 hl.bind("SUPER + M",                     hl.dsp.exec_cmd([[command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit]]))
 hl.bind("SUPER + P",                     hl.dsp.exec_cmd([[~/.config/hypr/scripts/monitor_menu.sh]]))
+hl.bind("SUPER+SHIFT + G",               hl.dsp.exec_cmd([[~/.config/hypr/scripts/toggle_gpu.sh]]))
 
 -- ==========================================
 -- 9. Hardware Controls (Volume / Brightness)
