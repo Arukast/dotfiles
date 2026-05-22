@@ -41,11 +41,9 @@ esac
 # TUNGGU LEBIH LAMA: Waktu krusial 2 detik untuk dGPU NVIDIA mengenali HDMI-A-1
 sleep 2
 
-# REFRESH WAYBAR SECARA AMAN
-killall waybar 2>/dev/null
-sleep 0.5
+# REFRESH WAYBAR SECARA AMAN VIA SYSTEMD
+systemctl --user restart waybar.service
 
-waybar > /dev/null 2>&1 &
 
 # REFRESH SWWW TANPA MEMBUNUH DAEMON
 # Pastikan daemon berjalan di latar belakang (jika sebelumnya tidak sengaja mati)

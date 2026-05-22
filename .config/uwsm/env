@@ -1,0 +1,61 @@
+# =============================================================================
+# UWSM GLOBAL ENVIRONMENT VARIABLES (~/.config/uwsm/env)
+# =============================================================================
+
+# Toolkit Backend Preferences
+export GDK_BACKEND="wayland,x11,*"
+export SDL_VIDEODRIVER="wayland"
+export CLUTTER_BACKEND="wayland"
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export ELECTRON_OZONE_PLATFORM_HINT="auto"
+
+# Portals & Desktop Names
+export XDG_SESSION_TYPE="wayland"
+export XDG_CURRENT_DESKTOP="Hyprland"
+export XDG_SESSION_DESKTOP="Hyprland"
+
+# Consistent Hyprcursor & Xcursor Settings
+export HYPRCURSOR_THEME="Adwaita"
+export HYPRCURSOR_SIZE=24
+export XCURSOR_THEME="Adwaita"
+export XCURSOR_SIZE=24
+
+# Miscellaneous Custom Settings
+export XDG_MENU_PREFIX="arch-"
+export TERMINAL="kitty -1"
+export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
+
+# -----------------------------------------------------------------------------
+# Power-State Detection & NVIDIA Toolkit Exports
+# -----------------------------------------------------------------------------
+
+# Helper templates
+export TEMPLATE_BATTERY_EGL="/usr/share/glvnd/egl_vendor.d/50_mesa.json"
+export TEMPLATE_BATTERY_VK="/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json"
+
+if [ -f "$HOME/.config/uwsm/env_gpu_override" ]; then
+    # Respect manual toggle override (sets export GPU_MODE=nvidia/mesa)
+    source "$HOME/.config/uwsm/env_gpu_override"
+else
+    # Auto detect power state on boot/startup
+    if grep -q 0 /sys/class/power_supply/AC*/online 2>/dev/null; then
+        export GPU_MODE="mesa"
+    else
+        export GPU_MODE="nvidia"
+    fi
+fi
+
+# Export NVIDIA or Mesa variables based on detected GPU_MODE
+if [ "$GPU_MODE" = "nvidia" ]; then
+    export LIBVA_DRIVER_NAME="nvidia"
+    export GBM_BACKEND="nvidia-drm"
+    export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+    export NVD_BACKEND="direct"
+else
+    export __EGL_VENDOR_LIBRARY_FILENAMES="$TEMPLATE_BATTERY_EGL"
+    export __GLX_VENDOR_LIBRARY_NAME="mesa"
+    export VK_DRIVER_FILES="$TEMPLATE_BATTERY_VK"
+    export LIBVA_DRIVER_NAME="radeonsi"
+fi

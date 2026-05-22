@@ -79,6 +79,8 @@ local function setup_workspaces()
 end
 setup_workspaces()
 
+local is_battery = (os.getenv("__GLX_VENDOR_LIBRARY_NAME") == "mesa")
+
 hl.config({
     general = {
         gaps_in = 4,
@@ -98,20 +100,20 @@ hl.config({
         }
     },
     decoration = {
-        rounding = 18,
+        rounding = is_battery and 8 or 18,
         rounding_power = 2.4,
-        dim_inactive = true,
+        dim_inactive = not is_battery,
         dim_strength = 0.05,
         dim_special = 0.07,
         shadow = {
-            enabled = true,
+            enabled = not is_battery,
             range = 6,
             offset = "0 4",
             render_power = 1,
             color = "rgba(00000027)"
         },
         blur = {
-            enabled = true,
+            enabled = not is_battery,
             xray = true,
             special = false,
             new_optimizations = true,
@@ -246,36 +248,23 @@ if f then
 end
 
 if not is_verifying then
-    local handle = io.popen("hyprctl plugin list 2>/dev/null")
-    local loaded_plugins = handle and handle:read("*a") or ""
-    if handle then handle:close() end
+    -- Statically load the hyprfocus plugin at parse time so its config keys are registered before validation
+    pcall(hl.plugin.load, "/var/cache/hyprpm/arukast/hyprland-plugins/hyprfocus.so")
 
-    if loaded_plugins:find("hyprfocus") then
-        pcall(hl.config, {
-            plugin = {
-                hyprfocus = {
-                    keyboard_focus_animation = "shrink",
-                    mouse_focus_animation = "flash",
-                    bezier = {
-                        "bezIn, 0.5, 0.0, 1.0, 0.5",
-                        "bezOut, 0.0, 0.5, 0.5, 1.0"
-                    },
-                    flash = {
-                        flash_opacity = 0.85,
-                        in_bezier = "bezIn",
-                        in_speed = 2.0,
-                        out_bezier = "bezOut",
-                        out_speed = 5.5
-                    },
-                    shrink = {
-                        shrink_percentage = 0.96,
-                        in_bezier = "bezIn",
-                        in_speed = 2.0,
-                        out_bezier = "bezOut",
-                        out_speed = 5.5
-                    }
-                }
+    -- Apply hyprfocus plugin configuration using correct, modern keys
+    pcall(hl.config, {
+        plugin = {
+            hyprfocus = {
+                mode = "flash",
+                only_on_monitor_change = false,
+                fade_opacity = 0.8,
+                bounce_strength = 0.95,
+                slide_height = 20
             }
-        })
-    end
+        }
+    })
+
+    -- Register modern focus animations
+    pcall(hl.animation, { leaf = "hyprfocusIn", enabled = true, speed = 1.7, bezier = "menu_decel" })
+    pcall(hl.animation, { leaf = "hyprfocusOut", enabled = true, speed = 1.7, bezier = "menu_decel" })
 end

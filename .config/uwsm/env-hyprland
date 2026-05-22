@@ -1,0 +1,18 @@
+# =============================================================================
+# UWSM COMPOSITOR-SPECIFIC VARIABLES (~/.config/uwsm/env-hyprland)
+# =============================================================================
+
+# This file is strictly for HYPR* and AQ* variables.
+# By always keeping both devices active, the HDMI port (physically wired to your 
+# Nvidia dGPU) will remain hot-pluggable and work dynamically on battery!
+#
+# When running on battery, your 'laptop-power.service' automatically terminates 
+# 'nvidia-persistenced', allowing the Nvidia GPU to automatically enter its 
+# ultra-low-power deep sleep state (D3cold - 0.0W draw) when no external monitor 
+# is connected.
+
+export AQ_DRM_DEVICES="/dev/dri/amd-igpu:/dev/dri/nvidia-dgpu"
+
+# Disable forcing of linear modifiers on blit to resolve EGL blit failure on Nvidia
+export AQ_FORCE_LINEAR_BLIT=0
+
