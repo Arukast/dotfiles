@@ -12,25 +12,25 @@ TARGET="$BACKUP_DIR/$DATE"
 
 # Cek apakah script dijalankan sebagai Root
 if [ "$EUID" -ne 0 ]; then
-  echo "❌ Error: Script ini harus dijalankan dengan sudo!"
+  echo "Error: Script ini harus dijalankan dengan sudo!"
   echo "Gunakan: sudo ./backup-sys-config.sh"
   exit 1
 fi
 
 # Cek apakah drive eksternal terpasang
 if [ ! -d "$BACKUP_DIR" ]; then
-    echo "⚠️  Peringatan: Folder tujuan tidak ditemukan!"
+    echo "Peringatan: Folder tujuan tidak ditemukan!"
     echo "Mencoba membuat folder induk di: $BACKUP_DIR"
     mkdir -p "$BACKUP_DIR"
     
     # Cek lagi jika gagal membuat (misal drive belum dicolok)
     if [ ! -d "$BACKUP_DIR" ]; then
-        echo "❌ Gagal. Pastikan Drive Eksternal sudah dimount."
+        echo "Gagal. Pastikan Drive Eksternal sudah dimount."
         exit 1
     fi
 fi
 
-echo "=== 🚀 Memulai Backup Konfigurasi Sistem ke: $TARGET ==="
+echo "=== Memulai Backup Konfigurasi Sistem ke: $TARGET ==="
 mkdir -p "$TARGET"
 
 # ================= DAFTAR FILE PENTING =================
@@ -66,19 +66,19 @@ for file in "${FILES[@]}"; do
         # cp --parents akan membuat folder tree otomatis
         # misal: /etc/fstab akan disimpan di $TARGET/etc/fstab
         cp -r --parents "$file" "$TARGET"
-        echo "✅ OK: $file"
+        echo "OK: $file"
     else
-        echo "Example: ⚠️  Skip (File tidak ada): $file"
+        echo "Example: Skip (File tidak ada): $file"
     fi
 done
 
 # ================= BACKUP DAFTAR PAKET (BONUS) =================
 # Ini berguna agar Anda tahu aplikasi apa saja yang terinstall di sistem ini
-echo "📦 Membackup daftar aplikasi terinstall..."
+echo "Membackup daftar aplikasi terinstall..."
 pacman -Qqe > "$TARGET/pkglist_native.txt"
 pacman -Qqm > "$TARGET/pkglist_aur.txt"
 
 echo "======================================================="
-echo "🎉 Backup Selesai!"
+echo "Backup Selesai!"
 echo "Lokasi: $TARGET"
 echo "======================================================="
