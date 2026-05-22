@@ -6,7 +6,7 @@ if [ -n "$1" ]; then
         "Reboot") systemctl reboot ;;
         "Suspend") systemctl suspend ;;
         "Lock") hyprlock ;;
-        "Logout") hyprctl dispatch exit ;;
+        "Logout") [ -n "$UWSM_FINALIZE_VARNAMES" ] && uwsm stop || hyprctl dispatch exit ;;
     esac
     exit 0
 fi

@@ -117,7 +117,7 @@
         {
           "label": "",
           "type": "normal",
-          "command": "swaync-client -cp && hyprlock"
+          "command": "swaync-client -cp && loginctl lock-session"
         },
         {
           "label": "",
@@ -127,7 +127,7 @@
         {
           "label": "󰍃",
           "type": "normal",
-          "command": "swaync-client -cp && hyprctl dispatch exit"
+          "command": "swaync-client -cp && ([ -n \"$UWSM_FINALIZE_VARNAMES\" ] && uwsm stop || hyprctl dispatch exit)"
         },
         {
           "label": "",

@@ -5,10 +5,10 @@
 -- ==========================================
 -- 1. Default Applications Variables
 -- ==========================================
-local terminal   = "kitty"
-local browser    = "firefox"
-local fileFolder = "dolphin"
-local codeEditor = "code"
+local terminal   = "uwsm app -- kitty"
+local browser    = "uwsm app -- firefox"
+local fileFolder = "uwsm app -- dolphin"
+local codeEditor = "uwsm app -- code"
 
 -- ==========================================
 -- 2. Application Launchers
@@ -18,7 +18,7 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + W",      hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + E",      hl.dsp.exec_cmd(fileFolder))
 hl.bind("SUPER + C",      hl.dsp.exec_cmd(codeEditor))
-hl.bind("SUPER + SPACE",  hl.dsp.exec_cmd([[~/.config/rofi/launchers/launcher.sh]]))
+hl.bind("SUPER + SPACE",  hl.dsp.exec_cmd([[uwsm app -- ~/.config/rofi/launchers/launcher.sh]]))
 hl.bind("SUPER + N",      hl.dsp.exec_cmd([[swaync-client -t -sw]]))
 hl.bind("SUPER + Slash",  hl.dsp.exec_cmd([[~/.config/hypr/scripts/keybinds_hint.sh]]))
 
@@ -107,8 +107,8 @@ hl.bind("SUPER + mouse:275", hl.dsp.workspace.toggle_special(""))
 hl.bind("SUPER + L",                     hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("SUPER+SHIFT + L",               hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"), { locked = true })
 hl.bind("CTRL+SHIFT+ALT+SUPER + Delete", hl.dsp.exec_cmd("systemctl poweroff || loginctl poweroff"))
-hl.bind("SUPER + M",                     hl.dsp.exec_cmd([[command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit]]))
-hl.bind("SUPER + P",                     hl.dsp.exec_cmd([[~/.config/hypr/scripts/monitor_menu.sh]]))
+hl.bind("SUPER + M",                     hl.dsp.exec_cmd([[command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || ([ -n "$UWSM_FINALIZE_VARNAMES" ] && uwsm stop || hyprctl dispatch exit)]]))
+hl.bind("SUPER + P",                     hl.dsp.exec_cmd([[uwsm app -- ~/.config/hypr/scripts/monitor_menu.sh]]))
 hl.bind("SUPER+SHIFT + G",               hl.dsp.exec_cmd([[~/.config/hypr/scripts/toggle_gpu.sh]]))
 
 -- ==========================================
@@ -139,5 +139,5 @@ hl.bind("SUPER + PRINT",     hl.dsp.exec_cmd([[hyprshot -m window]]))
 hl.bind("PRINT",             hl.dsp.exec_cmd([[hyprshot -m output]]))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd([[hyprshot -m region]]))
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd([[hyprpicker -a]]))
-hl.bind("SUPER + V",         hl.dsp.exec_cmd([[cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy]]))
+hl.bind("SUPER + V",         hl.dsp.exec_cmd([[cliphist list | uwsm app -- rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy]]))
 hl.bind("CTRL + SHIFT + grave", hl.dsp.exec_cmd([[pamixer --default-source -t]]))
