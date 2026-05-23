@@ -12,23 +12,30 @@ selected=$(echo -e "$options" | rofi -dmenu -p "Night Light" -theme-str 'window 
 
 [[ -z "$selected" ]] && exit 0
 
-# Kill existing instance
-pkill -x hyprsunset
+# Kill existing manual instances cleanly
+pkill -f 'hyprsunset --temperature' 2>/dev/null
 
 case "$selected" in
     *"Auto"*)
-        hyprsunset > /dev/null 2>&1 & disown
+        pkill -x hyprsunset
+        systemctl --user start hyprsunset.service
         echo "auto" > "$STATE_FILE"
         ;;
     *"Manual"*)
+        systemctl --user stop hyprsunset.service
+        pkill -x hyprsunset
         hyprsunset --temperature $TEMP_MANUAL > /dev/null 2>&1 & disown
         echo "manual" > "$STATE_FILE"
         ;;
     *"Extra"*)
+        systemctl --user stop hyprsunset.service
+        pkill -x hyprsunset
         hyprsunset --temperature $TEMP_EXTRA > /dev/null 2>&1 & disown
         echo "manual" > "$STATE_FILE"
         ;;
     *"Off"*)
+        systemctl --user stop hyprsunset.service
+        pkill -x hyprsunset
         echo "off" > "$STATE_FILE"
         ;;
 esac
