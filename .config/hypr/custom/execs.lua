@@ -6,6 +6,7 @@
 local wallpaper = "uwsm app -- awww-daemon & sleep 0.2 && uwsm app -- awww img $HOME/Pictures/Wallpapers/redbull3.png"
 local autoMounting = "uwsm app -- udiskie"
 local clipboardManager = "uwsm app -- wl-paste --type text --watch cliphist store & uwsm app -- wl-paste --type image --watch cliphist store & uwsm app -- wl-clip-persist --clipboard regular"
+local polkit = "uwsm app -- /usr/lib/polkit-kde-authentication-agent-1"
 
 hl.on("hyprland.start", function()
     -- Native plugins & low-level notifier
@@ -14,7 +15,7 @@ hl.on("hyprland.start", function()
     
     -- Launch wallpaper daemon & mount tools
     hl.exec_cmd("sleep 1; " .. wallpaper)
-    hl.exec_cmd("sleep 2; " .. autoMounting .. " & " .. clipboardManager)
+    hl.exec_cmd("sleep 2; " .. autoMounting .. " & " .. clipboardManager .. " & " .. polkit)
     
     -- Consistent GTK/GNOME Dark Theme Settings
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")
