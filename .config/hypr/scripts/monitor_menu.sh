@@ -13,25 +13,25 @@ case "$chosen" in
         
     "2. Mirror (Monitor Kos / Native 1080p)")
         # Mirror normal untuk monitor eksternal di kos (resolusi asli 1080p)
-        hyprctl --batch "keyword monitor eDP-1, 1920x1080, auto, 1; keyword monitor HDMI-A-1, 1920x1080, auto, 1, mirror, eDP-1; keyword monitor DP-2, 1920x1080, auto, 1, mirror, eDP-1"
+        hyprctl --batch "eval hl.monitor({ output = 'eDP-1', mode = '1920x1080', position = 'auto', scale = 1 }); eval hl.monitor({ output = 'HDMI-A-1', mode = '1920x1080', position = 'auto', scale = 1, mirror = 'eDP-1' }); eval hl.monitor({ output = 'DP-2', mode = '1920x1080', position = 'auto', scale = 1, mirror = 'eDP-1' })"
         ;;
         
     "3. Laptop Only")
-        hyprctl --batch "keyword monitor eDP-1, preferred, auto, 1; keyword monitor HDMI-A-1, disable; keyword monitor DP-2, disable"
+        hyprctl --batch "eval hl.monitor({ output = 'eDP-1', mode = 'preferred', position = 'auto', scale = 1 }); eval hl.monitor({ output = 'HDMI-A-1', disabled = true }); eval hl.monitor({ output = 'DP-2', disabled = true })"
         ;;
         
     "4. External Only (HDMI & DP-2 Saja)")
-        hyprctl --batch "keyword monitor HDMI-A-1, preferred, auto, 1; keyword monitor DP-2, preferred, auto, 1; keyword monitor eDP-1, disable"
+        hyprctl --batch "eval hl.monitor({ output = 'HDMI-A-1', mode = 'preferred', position = 'auto', scale = 1 }); eval hl.monitor({ output = 'DP-2', mode = 'preferred', position = 'auto', scale = 1 }); eval hl.monitor({ output = 'eDP-1', disabled = true })"
         ;;
     
     "5. Proyektor / Presentasi (UI Lebih Kecil)")
-        hyprctl --batch "keyword monitor eDP-1, preferred, 0x0, 1; keyword monitor HDMI-A-1, preferred, 1920x0, 0.8; keyword monitor DP-2, preferred, 4320x0, 1"
+        hyprctl --batch "eval hl.monitor({ output = 'eDP-1', mode = 'preferred', position = '0x0', scale = 1 }); eval hl.monitor({ output = 'HDMI-A-1', mode = 'preferred', position = '1920x0', scale = 0.8 }); eval hl.monitor({ output = 'DP-2', mode = 'preferred', position = '4320x0', scale = 1 })"
         ;;
 
     "6. Mirror Proyektor (Resolusi 720p agar tidak buram)")
         # Menurunkan resolusi kedua layar ke 720p khusus untuk proyektor
         # Jika teks masih kurang pas, ganti "1280x720" menjadi "1366x768"
-        hyprctl --batch "keyword monitor eDP-1, 1280x720, auto, 1; keyword monitor HDMI-A-1, 1280x720, auto, 1, mirror, eDP-1; keyword monitor DP-2, 1280x720, auto, 1, mirror, eDP-1"
+        hyprctl --batch "eval hl.monitor({ output = 'eDP-1', mode = '1280x720', position = 'auto', scale = 1 }); eval hl.monitor({ output = 'HDMI-A-1', mode = '1280x720', position = 'auto', scale = 1, mirror = 'eDP-1' }); eval hl.monitor({ output = 'DP-2', mode = '1280x720', position = 'auto', scale = 1, mirror = 'eDP-1' })"
         ;;
     *)
         exit 0
