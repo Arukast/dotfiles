@@ -303,3 +303,4 @@ fish_add_path /home/arukast/.spicetify
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
 fish_add_path "$HOME/.local/bin"
+alias config='/usr/bin/git --git-dir=/home/arukast/.dotfiles/ --work-tree=/home/arukast'
