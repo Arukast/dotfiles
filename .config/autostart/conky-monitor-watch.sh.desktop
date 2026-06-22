@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/home/arukast/.local/bin/conky-monitor-watch.sh
+Icon=
+Name=conky-monitor-watch.sh
+Path=
+Terminal=False
+Type=Application

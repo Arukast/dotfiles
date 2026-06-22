@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/arukast/.local/bin/autostart-ac-apps.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Autostart Apps on AC
+Comment=Starts Spotify, Discord, and Steam only when on AC power
+X-KDE-autostart-after=panel
