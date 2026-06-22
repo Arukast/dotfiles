@@ -1,0 +1,9 @@
+#!/bin/bash
+# 1. Run update check and download updates (without launching the UI yet)
+spotify-launcher --no-exec
+
+# 2. Re-apply Spicetify (fast if already patched, repatches if files were reset)
+spicetify apply || (spicetify clear && spicetify backup apply)
+
+# 3. Launch Spotify, skipping the update check since we just did it
+exec spotify-launcher --skip-update "$@"
