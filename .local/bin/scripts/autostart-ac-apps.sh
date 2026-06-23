@@ -25,7 +25,7 @@ if is_on_ac; then
     discord --start-minimized &
     
     # Launch Spotify
-    "$HOME/.local/bin/spotify-patched" &
+    "$HOME/.local/bin/scripts/spotify-patched" &
 else
     echo "Running on battery. Skipping autostart applications."
 fi

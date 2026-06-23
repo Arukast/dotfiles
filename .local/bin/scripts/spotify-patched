@@ -1,9 +1,29 @@
 #!/bin/bash
+
+# Ensure only one instance of spotify-patched runs at a time to prevent Spicetify write conflicts
+LOCKFILE="/tmp/spotify-patched.lock"
+exec 9>"$LOCKFILE"
+flock -x 9 || exit 1
+
 # 1. Run update check and download updates (without launching the UI yet)
 spotify-launcher --no-exec
 
 # 2. Re-apply Spicetify (fast if already patched, repatches if files were reset)
 spicetify apply || (spicetify clear && spicetify backup apply)
 
+# Release the lock before launching to allow other instances to delegate immediately
+flock -u 9
+
 # 3. Launch Spotify, skipping the update check since we just did it
-exec spotify-launcher --skip-update "$@"
+spotify-launcher --skip-update "$@"
+exit_code=$?
+
+# If spotify-launcher exits with code 1, it means it delegated to an already running instance.
+# If spotify is indeed running, we treat this as a success (exit 0) to prevent systemd/KDE crash dialogs.
+if [ $exit_code -eq 1 ]; then
+    if pgrep -x "spotify" >/dev/null; then
+        exit 0
+    fi
+fi
+
+exit $exit_code
