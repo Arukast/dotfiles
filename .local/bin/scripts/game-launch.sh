@@ -8,16 +8,16 @@
 # 1. RUN ON NVIDIA RTX 3050 (High Performance Mode - Default):
 #    Use this mode for demanding 3D games.
 #    - In Steam Launch Options:
-#      /home/arukast/.local/bin/game-launch.sh %command%
+#      /home/arukast/.local/bin/scripts/game-launch.sh %command%
 #    - From Terminal:
-#      /home/arukast/.local/bin/game-launch.sh ./game-executable
+#      /home/arukast/.local/bin/scripts/game-launch.sh ./game-executable
 #
 # 2. RUN ON AMD R5 INTEGRATED GPU (iGPU / Power Saving Mode):
 #    Use this mode for 2D games, visual novels, emulation, or playing on battery.
 #    - In Steam Launch Options:
-#      /home/arukast/.local/bin/game-launch.sh --igpu %command%
+#      /home/arukast/.local/bin/scripts/game-launch.sh --igpu %command%
 #    - From Terminal:
-#      /home/arukast/.local/bin/game-launch.sh --igpu ./game-executable
+#      /home/arukast/.local/bin/scripts/game-launch.sh --igpu ./game-executable
 #
 # 3. GAMESCOPE INTEGRATION (Wayland/Hyprland Anti-Stutter & Proton Fix):
 #    Gamescope runs the game in a nested micro-compositor, fixing Wayland & Proton bugs.
@@ -25,13 +25,13 @@
 #
 #    - Customizing Gamescope Output Resolution & Refresh Rate:
 #      (It auto-detects your active monitor's resolution/Hz via hyprctl, but you can override):
-#      GAMESCOPE_WIDTH=2560 GAMESCOPE_HEIGHT=1440 GAMESCOPE_REFRESH=144 /home/arukast/.local/bin/game-launch.sh %command%
+#      GAMESCOPE_WIDTH=2560 GAMESCOPE_HEIGHT=1440 GAMESCOPE_REFRESH=144 /home/arukast/.local/bin/scripts/game-launch.sh %command%
 #
 #    - Premium AMD FSR Upscaling (Render at 720p, upscale to 1080p using FSR):
-#      GAMESCOPE_RENDER_WIDTH=1280 GAMESCOPE_RENDER_HEIGHT=720 /home/arukast/.local/bin/game-launch.sh %command%
+#      GAMESCOPE_RENDER_WIDTH=1280 GAMESCOPE_RENDER_HEIGHT=720 /home/arukast/.local/bin/scripts/game-launch.sh %command%
 #
 #    - Disable Gamescope (Run game directly in your desktop workspace):
-#      USE_GAMESCOPE=0 /home/arukast/.local/bin/game-launch.sh %command%
+#      USE_GAMESCOPE=0 /home/arukast/.local/bin/scripts/game-launch.sh %command%
 #
 # ==============================================================================
 

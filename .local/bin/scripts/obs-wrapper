@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Path to the AC power status file
+AC_STATUS_FILE="/sys/class/power_supply/ACAD/online"
+
+# Check if we are on AC power (value is 1)
+if [ -f "$AC_STATUS_FILE" ] && [ "$(cat "$AC_STATUS_FILE")" = "1" ]; then
+    # On AC power -> Offload to NVIDIA GPU
+    echo "AC power detected: launching OBS on NVIDIA GPU"
+    exec env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia obs "$@"
+else
+    # On battery -> Run on AMD iGPU
+    echo "Battery power detected: launching OBS on AMD iGPU"
+    exec obs "$@"
+fi

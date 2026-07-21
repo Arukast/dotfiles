@@ -26,6 +26,8 @@ if is_on_ac; then
     
     # Launch Spotify
     "$HOME/.local/bin/scripts/spotify-patched" &
+
+    "$HOME/.local/bin/scripts/conky-monitor-watch.sh" & 
 else
     echo "Running on battery. Skipping autostart applications."
 fi
