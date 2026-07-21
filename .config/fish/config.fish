@@ -1,306 +1,106 @@
-function fish_prompt -d "Write out the prompt"
-    # This shows up as USER@HOST /home/user/ >, with the directory colored
-    # $USER and $hostname are set by fish, so you can just use them
-    # instead of using `whoami` and `hostname`
-    printf '%s@%s %s%s%s > ' $USER $hostname \
-        (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-end
+# ==============================================================================
+# Fish Shell Configuration (~/.config/fish/config.fish)
+# ==============================================================================
 
-if status is-interactive # Commands to run in interactive sessions can go here
+# --- Environment Variables & PATH ---
+set -gx CCACHE_DIR "$HOME/.ccache"
+set -gx CCACHE_MAXSIZE 5G
 
-    # No greeting
-    set fish_greeting
+fish_add_path "$HOME/.spicetify"
+fish_add_path "$HOME/.local/bin"
 
-    # Use starship
-    starship init fish | source
+# --- Interactive Session Configuration ---
+if status is-interactive
+
+    # Disable default welcome greeting
+    set -g fish_greeting
+
+    # Initialize Starship prompt if installed
+    if type -q starship
+        starship init fish | source
+    end
+
+    # Quickshell color sequences
     if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-    cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+        cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
     end
 
-    # Aliases
-    alias pamcan pacman
-    alias ls 'eza --icons'
-    alias clear "printf '\033[2J\033[3J\033[1;1H'"
+    # --- Aliases & Overrides ---
+    alias pamcan 'pacman'
     alias q 'qs -c ii'
-
-    # --- Modified commands ---
-    # Cek apakah colordiff terinstall
-    if type -q colordiff
-        alias diff 'colordiff'
-    end
-
-    alias grep 'grep --color=auto'
-    alias more 'less'
-    alias df 'df -h'
-    alias du 'du -c -h'
-    alias mkdir 'mkdir -p -v'
-    alias nano 'nano -w'
-    alias ping 'ping -c 5'
-    
-    # dmesg sering butuh sudo, kita set aman
-    alias dmesg 'dmesg -HL'
-
-    # --- New commands ---
     alias da 'date "+%A, %B %d, %Y [%T]"'
-    alias du1 'du --max-depth=1'
     alias hist 'history | grep'
     alias openports 'ss --all --numeric --processes --ipv4 --ipv6'
     alias pgg 'ps -Af | grep'
     alias .. 'cd ..'
-    # Spicetify configuration for Arch Linux (AUR/Repo) Spotify
-    # Spicetify configuration for Arch Linux (AUR/Repo/Launcher) Spotify
-    function spotify_spicetify
-        # Detect Spotify path (prioritize spotify-launcher if present)
-        set -l spotify_path "/opt/spotify"
-        if test -d "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
-            set spotify_path "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
-        end
-        
-        set -l prefs_path "$HOME/.config/spotify/prefs"
+    alias cd.. 'cd ..'
 
-        if not test -d $spotify_path
-            echo "Error: Spotify not found at $spotify_path. Is it installed?"
-            return 1
-        end
+    # Error-tolerant shell exit aliases
+    alias :q 'exit'
+    alias :Q 'exit'
+    alias :x 'exit'
 
-        echo "Using Spotify path: $spotify_path"
-        spicetify config spotify_path $spotify_path
-        spicetify config prefs_path $prefs_path
-        
-        echo "Setting directory permissions..."
-        sudo chmod a+wr $spotify_path
-        sudo chmod a+wr -R "$spotify_path/Apps"
-        
-        # Handle mismatch errors by forcing a backup reset if -f is passed
-        if contains -- "-f" $argv
-            echo "Forcing backup reset..."
-            rm -rf ~/.config/spicetify/Backup
-        end
-
-        echo "Cleaning up previous backup state..."
-        spicetify restore backup 2>/dev/null
-        
-        echo "Applying Spicetify..."
-        spicetify backup apply
+    # File Listing (Use eza if available, fallback to ls)
+    if type -q eza
+        alias ls 'eza --icons'
+        alias ll 'eza -l --icons'
+        alias la 'eza -la --icons'
+        alias lt 'eza --tree --icons'
+        alias lm 'eza -la --icons | less'
+    else
+        alias ls 'ls -hF --color=auto'
+        alias ll 'ls -l -hF --color=auto'
+        alias la 'ls -la -hF --color=auto'
+        alias lr 'ls -R'
+        alias lx 'll -BX'
+        alias lz 'll -rS'
+        alias lt 'll -rt'
+        alias lm 'la | less'
     end
 
-    # --- Privileged access ---
-    # Logika "if UID != 0" versi Fish
+    # Colordiff integration
+    if type -q colordiff
+        alias diff 'colordiff'
+    end
+
+    # System & Navigation Defaults
+    alias grep 'grep --color=auto'
+    alias more 'less'
+    alias df 'df -h'
+    alias du 'du -c -h'
+    alias du1 'du --max-depth=1'
+    alias mkdir 'mkdir -p -v'
+    alias nano 'nano -w'
+    alias ping 'ping -c 5'
+    alias dmesg 'dmesg -HL'
+    alias clear "printf '\033[2J\033[3J\033[1;1H'"
+    alias cls 'printf "\033c"'
+
+    # Safety Features
+    alias cp 'cp -i'
+    alias mv 'mv -i'
+    alias rm 'rm -Iv --one-file-system'
+    alias ln 'ln -i'
+    alias chown 'chown --preserve-root'
+    alias chmod 'chmod --preserve-root'
+    alias chgrp 'chgrp --preserve-root'
+
+    # System Maintenance & Disk Monitoring
+    alias checkmount 'mount | grep -E "sd[a-z][0-9]"'
+    alias checktrim 'lsblk -d -o NAME,SIZE,MODEL,DISC-GRAN,DISC-MAX'
+    alias dotrim 'sudo fstrim -av'
+
+    # Privileged Access (Non-root user)
     if test (id -u) -ne 0
         alias scat 'sudo cat'
         alias svim 'sudoedit'
         alias root 'sudo -i'
         alias reboot 'sudo systemctl reboot'
         alias poweroff 'sudo systemctl poweroff'
-    # --- Update Function ---
-    function update
-        set -l blue (set_color -o blue)
-        set -l green (set_color -o green)
-        set -l normal (set_color normal)
-
-        echo -e "\n$blue── Updating pacman packages ──$normal"
-        sudo pacman -Syu
-
-        if command -v yay > /dev/null
-            echo -e "\n$blue── Updating AUR packages (yay) ──$normal"
-            yay -Syu
-        else if command -v paru > /dev/null
-            echo -e "\n$blue── Updating AUR packages (paru) ──$normal"
-            paru -Syu
-        end
-
-        if command -v flatpak > /dev/null
-            echo -e "\n$blue── Updating Flatpak packages ──$normal"
-            flatpak update
-        end
-
-        if command -v hyprpm > /dev/null
-            echo -e "\n$blue── Updating Hyprland plugins ──$normal"
-            hyprpm update && hyprpm reload
-        end
-
-        # Update Waybar module if running
-        if pgrep waybar > /dev/null
-            pkill -RTMIN+1 waybar
-        end
-
-        echo -e "\n$green── System Update Complete ──$normal\n"
-    end
         alias netctl 'sudo netctl'
-        
-        # Catatan: Trik "alias sudo='sudo '" ala Bash tidak jalan di Fish.
-        # Fish punya cara parsing berbeda, jadi sudo ll (alias) mungkin tidak jalan 
-        # kecuali Anda membuat fungsi wrapper, tapi sudo ls -l tetap jalan.
     end
 
-    # --- ls aliases ---
-    alias ls 'ls -hF --color=auto'
-    alias lr 'ls -R'
-    alias ll 'ls -l'
-    alias la 'll -A'
-    alias lx 'll -BX'
-    alias lz 'll -rS'
-    alias lt 'll -rt'
-    alias lm 'la | more'
+    # Fix unknown terminal issues (e.g. xterm-kitty on remote SSH)
+    alias fix-kitty 'set -gx TERM xterm-256color'
 
-    # --- Safety features ---
-    alias cp 'cp -i'
-    alias mv 'mv -i'
-    
-    # Versi RM aman pilihan Anda
-    alias rm 'rm -Iv --one-file-system'
-    
-    alias ln 'ln -i'
-    alias chown 'chown --preserve-root'
-    alias chmod 'chmod --preserve-root'
-    alias chgrp 'chgrp --preserve-root'
-    
-    # Fish menggunakan printf agar lebih konsisten daripada echo -ne
-    alias cls 'printf "\033c"'
-
-    # --- Make Shell error tolerant ---
-    alias :q 'exit'
-    alias :Q 'exit'
-    alias :x 'exit'
-    alias cd.. 'cd ..'
-
-    # Cek apakah SSD menggunakan driver ntfs3 atau ntfs-3g (fuse)
-    alias checkmount 'mount | grep -E "sd[a-z][0-9]"'
-
-    # Cek apakah TRIM didukung oleh hardware/enclosure (Lihat kolom DISC-GRAN)
-    # Jika nilainya bukan 0B, berarti TRIM didukung
-    alias checktrim 'lsblk -d -o NAME,SIZE,MODEL,DISC-GRAN,DISC-MAX'
-
-    # Cek status "dirty" NTFS tanpa melakukan perubahan (Dry run)
-    # alias checkntfs 'sudo ntfsfix -n /dev/sda2'
-
-    # Jalankan TRIM secara manual pada semua drive yang mendukung
-    alias dotrim 'sudo fstrim -av'
-
-    # Error opening terminal: xterm-kitty.
-    alias xterm-kitty 'echo export TERM=xterm-256color'
-
-    # ============================================================
-    #  AI Stack — Fish Shell Functions
-    #  Place in: ~/.config/fish/functions/ (one file per function)
-    #  or source from ~/.config/fish/config.fish
-    # ============================================================
-
-    set -g AI_COMPOSE_FILE /home/arukast/ai-stack/docker-compose.yml
-
-    # ── Start ────────────────────────────────────────────────────
-    function ai-up
-        docker compose -f $AI_COMPOSE_FILE up -d
-    end
-
-    # ── Stop ─────────────────────────────────────────────────────
-    function ai-down
-        docker compose -f $AI_COMPOSE_FILE down
-    end
-
-    # ── Restart ──────────────────────────────────────────────────
-    function ai-restart
-        if test (count $argv) -eq 0
-            docker compose -f $AI_COMPOSE_FILE restart
-        else
-            docker restart $argv[1]
-        end
-    end
-
-    # ── Logs ─────────────────────────────────────────────────────
-    function ai-log
-        set lines (test (count $argv) -ge 1; and echo $argv[1]; or echo 30)
-        for c in llama-swap open-webui searxng redis
-            echo -e "\n=== $c ==="
-            docker logs --tail $lines $c 2>&1 | grep -vE "(GET|POST) /health"
-        end
-    end
-
-    # ── Follow live logs ─────────────────────────────────────────
-    function ai-follow
-        if test (count $argv) -eq 0
-            echo "Usage: ai-follow <container>"
-            return 1
-        end
-        docker logs -f $argv[1] 2>&1 | grep -vE "(GET|POST) /health"
-    end
-
-    # ── Status ───────────────────────────────────────────────────
-    function ai-status
-        echo "=== Docker Containers ==="
-        docker compose -f $AI_COMPOSE_FILE ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}"
-        
-        echo -e "\n=== GPU VRAM ==="
-        nvidia-smi --query-gpu=name,memory.used,memory.free,utilization.gpu --format=csv,noheader | awk -F',' '{printf "  %s | Used: %s | Free: %s | Util: %s\n", $1, $2, $3, $4}'
-        
-        echo -e "\n=== Active Models ==="
-        curl -sf http://localhost:8000/v1/models | grep -o '"id":"[^"]*"' | cut -d'"' -f4 | sed 's/^/  ✅ /' || echo "  (no model loaded / unreachable)"
-    end
-
-    # ── Quick VRAM watch (live) ──────────────────────────────────
-    function ai-gpu
-        watch -n 1 "nvidia-smi --query-gpu=name,memory.used,memory.free,utilization.gpu,temperature.gpu --format=csv,noheader"
-    end
-
-    # ── Update Stack ─────────────────────────────────────────────
-    function ai-update
-        # Mengganti kompilasi lokal dengan pembaruan Docker image 
-        # karena llama-swap menggunakan binary internalnya sendiri.
-        docker compose -f $AI_COMPOSE_FILE pull
-        docker compose -f $AI_COMPOSE_FILE up -d
-        docker image prune -f
-    end
-
-    # ── Test Endpoints ───────────────────────────────────────────
-    function ai-test
-        set endpoints \
-            "llama-swap:http://localhost:8000/health" \
-            "open-webui:http://localhost:8080" \
-            "searxng:http://localhost:8888" \
-            "embeddings:http://localhost:8002/health"
-
-        for ep in $endpoints
-            set name (echo $ep | cut -d: -f1)
-            set url (echo $ep | cut -d: -f2-)
-            set status (curl -sf -o /dev/null -w "%{http_code}" $url)
-            if test "$status" = "200"
-                echo "  ✅ $name ($url)"
-            else
-                echo "  ❌ $name (status: $status)"
-            end
-        end
-
-        if docker exec redis redis-cli ping >/dev/null 2>&1
-            echo "  ✅ redis (localhost:6379)"
-        else
-            echo "  ❌ redis (no response)"
-        end
-    end
-
-    # ── Load Model ───────────────────────────────────────────────
-    function ai-load
-        if test (count $argv) -eq 0
-            echo "Usage: ai-load <model-name>"
-            echo "Models (from llama-swap.yaml):"
-            echo "  DeepSeek-R1-0528-Qwen3-8B-UD-Q4_K_XL"
-            echo "  Qwen 3.5-9B-UD-Q3_K_XL"
-            echo "  Qwen 3.5-9B [Thinking · General]"
-            echo "  Qwen 3.5-9B [Thinking · Coding]"
-            echo "  Qwen 3.5-9B [Instruct · General]"
-            echo "  Qwen 3.5-9B [Instruct · Reasoning]"
-            return 1
-        end
-        curl -sf -w "\nHTTP %{http_code}\n" http://localhost:8000/v1/chat/completions \
-            -H "Content-Type: application/json" \
-            -d "{\"model\": \"$argv[1]\", \"messages\": [{\"role\": \"user\", \"content\": \"hi\"}], \"max_tokens\": 1}"
-    end
 end
-
-set -x CCACHE_DIR /home/arukast/.ccache
-set -x CCACHE_MAXSIZE 5G
-
-fish_add_path /home/arukast/.spicetify
-
-# Hermes Agent — ensure ~/.local/bin is on PATH
-fish_add_path "$HOME/.local/bin"
-alias config='/usr/bin/git --git-dir=/home/arukast/.dotfiles/ --work-tree=/home/arukast'

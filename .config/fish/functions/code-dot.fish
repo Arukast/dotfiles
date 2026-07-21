@@ -3,5 +3,5 @@ function code-dot
     if test -z "$target"
         set target "."
     end
-    env GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME code $target
+    env GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME zeditor $target
 end
